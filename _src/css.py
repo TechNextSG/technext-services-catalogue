@@ -32,14 +32,14 @@ b,strong{color:var(--ink);font-weight:600}
 
 /* thumb-index tabs */
 .tabs{position:absolute;right:0;top:58mm;display:flex;flex-direction:column;gap:2mm}
-.tab{width:6.5mm;height:30mm;background:var(--wash);border-radius:2mm 0 0 2mm;display:flex;align-items:center;justify-content:center}
-.tab span{transform:rotate(90deg);white-space:nowrap;font:700 5.6pt/1 var(--fb);letter-spacing:.16em;text-transform:uppercase;color:#9DB3DD}
+.tab{width:6.5mm;height:36mm;background:#E3EAF7;border-radius:2mm 0 0 2mm;display:flex;align-items:center;justify-content:center}
+.tab span{transform:rotate(90deg);white-space:nowrap;font:700 5.6pt/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:#4A5F8C}
 .tab.on{background:var(--blue);width:8.5mm}
 .tab.on span{color:#fff}
 .page.even .tabs{right:auto;left:0}
 .page.even .tab{border-radius:0 2mm 2mm 0}
 .page.even .tab span{transform:rotate(-90deg)}
-.div .tab{background:rgba(255,255,255,.08)}.div .tab span{color:rgba(255,255,255,.45)}.div .tab.on{background:#fff}.div .tab.on span{color:#1E4691}
+.div .tab{background:rgba(255,255,255,.08)}.div .tab span{color:rgba(255,255,255,.75)}.div .tab.on{background:#fff}.div .tab.on span{color:#1E4691}
 
 /* ---------- type ---------- */
 .eyebrow{font:700 6.8pt/1 var(--fb);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
