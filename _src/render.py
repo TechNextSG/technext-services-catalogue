@@ -4,7 +4,7 @@ chrome = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 prof = tempfile.mkdtemp(prefix="cat-chrome-")
 pdf = os.path.join(ROOT, "out", "TechNext-Services-Catalogue-2026-27.pdf")
 os.makedirs(os.path.join(ROOT, "out", "pages"), exist_ok=True)
-url = "file:///" + os.path.join(ROOT, "index.html").replace("\\", "/")
+url = "file:///" + os.path.join(ROOT, "print.html").replace("\\", "/")
 subprocess.run([chrome, "--headless=new", "--disable-gpu", f"--user-data-dir={prof}", "--no-pdf-header-footer",
                 "--virtual-time-budget=8000", "--run-all-compositor-stages-before-draw", f"--print-to-pdf={pdf}", url], check=True, capture_output=True)
 shutil.rmtree(prof, ignore_errors=True)

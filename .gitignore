@@ -3,3 +3,4 @@ out/pages/
 out/*.jpg
 __pycache__/
 _ovf.html
+_import/

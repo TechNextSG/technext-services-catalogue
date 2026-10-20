@@ -1,7 +1,7 @@
 # headless check: any .sv/.ct whose content overflows, or elements crossing the footer line
 import subprocess, os, tempfile, shutil, json
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-src=open(os.path.join(ROOT,'index.html'),encoding='utf-8').read()
+src=open(os.path.join(ROOT,'print.html'),encoding='utf-8').read()
 js='''<script>addEventListener('load',()=>setTimeout(()=>{const r=[];document.querySelectorAll('.page').forEach((pg,i)=>{const b=pg.getBoundingClientRect();
 const box=pg.querySelector('.sv,.ct');if(!box)return;const lim=b.bottom-(box.classList.contains("sv")?18.5:20)*3.7795;let mx=0;box.querySelectorAll('*').forEach(e=>{const q=e.getBoundingClientRect();if(q.height&&q.bottom>mx&&!e.closest('.vis'))mx=q.bottom});
 if(mx>lim+0.5)r.push([i+1,Math.round((mx-lim)/3.7795*10)/10]);
