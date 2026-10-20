@@ -824,14 +824,16 @@
   const Zoom = {
     open: false, pages: [], z: 1, tx: 0, ty: 0, pw0: 300, ph0: 424, tool: 'hand', ptrs: new Map(), drag: null, pinch: null, suppress: false, mode: 'spread',
     pad: { x: 24, t: 58, b: 78 },
-    show(pages, focus) {
+    show(pages, focus, keep) {
       let list = pages.filter(n => !isBlank(n));
       if (!list.length) list = [primaryOf(pages)];
       this.pages = list;
       this.mode = S.view === 'book' && !Book.portrait ? 'spread' : 'single';
       this.open = true;
       el.zoom.hidden = false;
-      el.zoomContent.innerHTML = list.map(n => `<div class="zpage" data-n="${n}"><img class="page__img" alt="${esc(`Page ${n} — ${titleOf(n)}`)}" src="${Images.urlFor(n)}" draggable="false" decoding="async"><div class="layer hl-layer"></div><div class="layer textlayer"></div><div class="layer hs-layer"></div></div>`).join('');
+      // a full-resolution page that is already decoded is used straight away - no blurry first frame
+      const src = n => { const im = Images.cache.get(imgUrl(n)); return im && im.complete && im.naturalWidth ? imgUrl(n) : Images.urlFor(n); };
+      el.zoomContent.innerHTML = list.map(n => `<div class="zpage" data-n="${n}"><img class="page__img" alt="${esc(`Page ${n} — ${titleOf(n)}`)}" src="${src(n)}" draggable="false" decoding="async"><div class="layer hl-layer"></div><div class="layer textlayer"></div><div class="layer hs-layer"></div></div>`).join('');
       $$('.zpage', el.zoomContent).forEach(z => {
         const n = +z.dataset.n, img = $('img', z), url = imgUrl(n);
         decorate(z, n, { text: true });
@@ -840,7 +842,11 @@
       });
       el.zoomLabel.innerHTML = `<b>p. ${pageLabel(list)}</b> · ${esc(titleOf(primaryOf(list)))}`;
       this.fit();
-      if (focus) {
+      if (keep && keep.z > 1) {
+        // stepping keeps the zoom level, and the same place on the page (horizontal offset within the spread, same height)
+        this.z = keep.z; this.tx = keep.tx; this.ty = keep.ty;
+        this.clampPan();
+      } else if (focus) {
         const i = Math.max(0, list.indexOf(focus.n));
         const vr = el.zoomViewport.getBoundingClientRect();
         const z = isTouch ? 2.2 : 2.4;
@@ -852,6 +858,8 @@
       }
       this.apply();
       updateNav();
+      // the next and previous spreads are decoded at full resolution now, so stepping shows them sharp at once
+      [1, -1].forEach(d => (this.neighbour(d) || []).forEach(n => Images.decode(imgUrl(n))));
     },
     close() {
       if (!this.open) return;
@@ -904,7 +912,19 @@
       const j = i + dir;
       return j >= 0 && j < list.length ? [list[j]] : null;
     },
-    step(dir) { const nb = this.neighbour(dir); if (nb) this.show(nb); },
+    // Back / forward inside zoom. The book (or scroll column) behind follows, so the page counter, section
+    // label and rail always show the pages being looked at - and closing zoom lands on them.
+    step(dir) {
+      const nb = this.neighbour(dir);
+      if (!nb) return;
+      const W = el.zoomViewport.clientWidth, keep = { z: this.z, ty: this.ty, tx: this.tx };
+      // a single page (cover) and a two-page spread differ in width: keep the view centred on the same side
+      if (nb.length !== this.pages.length) keep.tx = W / 2 - (W / 2 - this.tx) * nb.length / this.pages.length;
+      this.show(nb, null, keep);
+      const n = primaryOf(nb);
+      if (S.view === 'scroll') Scroll.goTo(n, false);
+      else if (S.view === 'book') Book.goTo(n, false);
+    },
     bind() {
       const vp = el.zoomViewport;
       vp.addEventListener('pointerdown', e => {
