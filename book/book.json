@@ -41,7 +41,7 @@
  "back": [
   [
    "Back cover · contact",
-   38
+   54
   ]
  ],
  "pageLabels": {
@@ -49,7 +49,7 @@
   "2": "About TechNext",
   "3": "Contents",
   "4": "How we engage",
-  "38": "Back cover",
+  "54": "Back cover",
   "5": "Practice 01 · Odoo ERP",
   "18": "Practice 02 · Enterprise AI",
   "24": "Practice 03 · Websites & Marketing",
@@ -190,16 +190,48 @@
      34
     ],
     [
-     "Localisation: SG, PH, VN",
+     "Retail: modules and rollout",
      35
     ],
     [
+     "Food & beverage: modules and rollout",
+     37
+    ],
+    [
+     "Manufacturing: modules and rollout",
+     39
+    ],
+    [
+     "Ecommerce: modules and rollout",
+     41
+    ],
+    [
+     "Construction: modules and rollout",
+     43
+    ],
+    [
+     "Clinics & healthcare: modules and rollout",
+     45
+    ],
+    [
+     "Travel & tours: modules and rollout",
+     47
+    ],
+    [
+     "Health & wellness: modules and rollout",
+     49
+    ],
+    [
+     "Localisation: SG, PH, VN",
+     51
+    ],
+    [
      "Where we work",
-     36
+     52
     ],
     [
      "How to start",
-     37
+     53
     ]
    ]
   }

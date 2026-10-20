@@ -3,6 +3,7 @@ import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from css import CSS
 from data import PRACTICES, S, ODOO_CATS, INDUSTRIES, IND_EXTRA
+from industries import IND_DETAIL
 from visuals import VIS, oi
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -95,7 +96,7 @@ def contents(n, pmap):
         blocks.append(f'<div><a href="#d-{p["id"]}" style="display:flex;align-items:baseline;gap:3mm;padding-bottom:2.4mm;border-bottom:.5mm solid var(--ink)">'
                       f'<span style="font:800 16pt/1 var(--fd);color:var(--blue)">{p["n"]}</span><span class="h3">{p["name"]}</span>'
                       f'<span style="margin-left:auto;font:700 8.6pt/1 var(--fd);color:var(--ink)">{pmap["d-" + p["id"]]:02d}</span></a>{rows}</div>')
-    ref = [("industries", "Odoo by industry"), ("local", "Localisation: Singapore, the Philippines, Vietnam"), ("offices", "Where we work"), ("start", "How to start")]
+    ref = [("industries", "Odoo by industry"), ("ind-retail", "Industry sheets: the modules inside, flow and rollout"),("local", "Localisation: Singapore, the Philippines, Vietnam"), ("offices", "Where we work"), ("start", "How to start")]
     refs = "".join(f'<a href="#{a}" style="display:grid;grid-template-columns:1fr 10mm;padding:2.2mm 0;border-bottom:.25mm solid var(--line)"><span style="font:600 8.6pt/1.3 var(--fb);color:var(--ink)">{t}</span>'
                    f'<span style="text-align:right;font:700 8.6pt/1 var(--fd);color:var(--ink)">{pmap[a]:02d}</span></a>' for a, t in ref)
     return f'''<div class="ct">
@@ -266,21 +267,82 @@ def offer(n):
 <div class="small" style="margin-top:4mm">Apply at technext.asia/get-started. Odoo itself is not free; your website runs on your own Odoo subscription, which you pay to Odoo.</div>
 </div>'''
 
+PMAP = {}
+
 def industries(n, items, first):
     cards = ""
     base = 0 if first else 4
     for k, (name, img, apps, desc, pts) in enumerate(items):
         cards += (f'<div class="card" style="padding:0;overflow:hidden;display:flex;flex-direction:column">'
-                  f'<div style="height:24mm;background:linear-gradient(140deg,#0F2350,#1E4691 70%,#2D5DB8);position:relative;display:flex;align-items:center;justify-content:space-between;padding:0 5mm">'
+                  f'<div style="height:19mm;background:linear-gradient(140deg,#0F2350,#1E4691 70%,#2D5DB8);position:relative;display:flex;align-items:center;justify-content:space-between;padding:0 5mm">'
                   f'<div><div style="font:700 6pt/1 var(--fb);letter-spacing:.16em;color:#9DB3DD">INDUSTRY 0{base + k + 1}</div><div style="font:800 13.5pt/1.1 var(--fd);color:#fff;margin-top:1.6mm;letter-spacing:-.02em">{name}</div></div>'
                   f'<div style="display:flex;gap:1.6mm">{"".join(oi(a, 7.5) for a in apps)}</div></div>'
                   f'<div style="padding:4.4mm 5mm;display:flex;flex-direction:column;gap:2mm;flex:1"><p style="font-size:8.2pt;color:var(--ink)">{desc}</p>'
                   f'<ul class="inc" style="gap:1.4mm;margin-top:1mm">{"".join(f"<li style=\"font-size:7.6pt\">{x}</li>" for x in pts)}</ul>'
                   f'<div style="margin-top:auto;padding-top:3mm;border-top:.25mm solid var(--line)"><div class="eyebrow b" style="font-size:6pt">Where we start</div><p style="font-size:7.6pt;margin-top:1.4mm;color:var(--ink)">{IND_EXTRA[name][0]}</p></div>'
-                  f'<div class="qa" style="padding-top:2.6mm"><div class="q" style="font-size:7.8pt">{IND_EXTRA[name][1]}</div><p>{IND_EXTRA[name][2]}</p></div></div></div>')
+                  f'<div class="qa" style="padding-top:2.6mm"><div class="q" style="font-size:7.8pt">{IND_EXTRA[name][1]}</div><p>{IND_EXTRA[name][2]}</p></div>'
+                  f'<a href="#ind-{IND_DETAIL[name]["slug"]}" style="display:flex;justify-content:space-between;align-items:center;margin-top:2.4mm;padding:2mm 3mm;border-radius:2mm;background:var(--wash);font:700 7.2pt/1 var(--fd);color:var(--navy)">'
+                  f'<span>Modules inside, flow and rollout</span><span>p. {PMAP.get("ind-" + IND_DETAIL[name]["slug"], 0):02d} &#8594;</span></a></div></div>')
     head = ('<div class="eyebrow b">Odoo by industry</div><div class="h1" style="margin-top:4mm">Built around <span class="mk">how your sector works.</span></div>'
             if first else '<div class="eyebrow b">Odoo by industry · continued</div><div class="h2" style="margin-top:4mm">Projects, patients, trips <span class="mk">and memberships.</span></div>')
     return f'<div class="ct" {"id=\"industries\"" if first else ""}>{head}<div style="display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:7mm;flex:1;grid-auto-rows:1fr">{cards}</div></div>'
+
+def ind_no(name):
+    return [i[0] for i in INDUSTRIES].index(name) + 1
+
+def ind_sheet_a(n, name):
+    d = IND_DETAIL[name]
+    k = ind_no(name)
+    glance_apps = "".join(f'<span style="display:inline-flex;align-items:center;gap:1.4mm;font:600 7.4pt/1 var(--fb);color:#fff">{oi(m["icon"], 4.2)}{m["name"]}</span>' for m in d["modules"])
+    probs = "".join(f'<div style="border-left:.8mm solid var(--blue);padding-left:3.6mm"><div class="h4">{t}</div><p style="font-size:7.6pt;margin-top:1.2mm">{x}</p></div>' for t, x in d["problems"])
+    mods = ""
+    for i, m in enumerate(d["modules"]):
+        big = i == 0
+        feats = "".join(f'<li style="font-size:7.5pt">{f}</li>' for f in m["feat"])
+        mods += (f'<div class="card" style="padding:4mm 4.4mm;display:flex;flex-direction:column;gap:2.2mm{";grid-column:1/-1;border:.5mm solid var(--blue)" if big else ""}">'
+                 f'<div style="display:flex;gap:2.8mm;align-items:center">{oi(m["icon"], 8 if big else 6.6)}<div><div class="h4" style="font-size:{10.4 if big else 9.2}pt">{m["name"]}</div>'
+                 f'<div style="font:500 7pt/1.3 var(--fb);color:var(--muted);margin-top:.6mm">{m["line"]}</div></div>'
+                 f'{"<span class=\"tag bl\" style=\"margin-left:auto\">Core module</span>" if big else ""}</div>'
+                 f'<ul class="inc" style="gap:1.2mm{";display:grid;grid-template-columns:1fr 1fr;column-gap:6mm" if big else ""}">{feats}</ul></div>')
+    reps = "".join(f'<span class="chip" style="height:5.6mm">{r}</span>' for r in d["reports"])
+    return f'''<div class="ct" id="ind-{d["slug"]}">
+<div style="display:flex;align-items:center;gap:2mm"><span class="ref"><i></i>Industry 0{k}</span><span class="eyebrow b">{name}</span><span class="eyebrow" style="margin-left:auto;letter-spacing:.06em;text-transform:none">{d["url"]}</span></div>
+<div class="h1" style="font-size:24pt;margin-top:3.6mm">{d["title"]}</div>
+<p class="lead" style="font-size:9.4pt;margin-top:2.6mm;max-width:166mm">{d["sub"]}</p>
+<div style="margin-top:5mm;background:linear-gradient(120deg,#0F2350,#1E4691);border-radius:3mm;padding:4mm 5mm;display:grid;grid-template-columns:1fr 46mm;gap:6mm;align-items:center">
+ <div><div style="font:700 5.8pt/1 var(--fb);letter-spacing:.16em;color:#9DB3DD">ODOO APPS WE SWITCH ON</div><div style="display:flex;flex-wrap:wrap;gap:2mm 4.4mm;margin-top:2.4mm">{glance_apps}</div></div>
+ <div style="border-left:.25mm solid rgba(255,255,255,.25);padding-left:5mm"><div style="font:700 5.8pt/1 var(--fb);letter-spacing:.16em;color:#9DB3DD">FIRST PHASE</div><div style="font:700 8.6pt/1.3 var(--fd);color:#fff;margin-top:1.8mm">{d["first"]}</div></div>
+</div>
+<div class="sec-h" style="margin-top:5.4mm"><span class="n">A</span><span class="t">What usually slows you down</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5mm">{probs}</div>
+<div class="sec-h" style="margin-top:5.4mm"><span class="n">B</span><span class="t">The modules inside, and what each one does</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:3.4mm">{mods}</div>
+<div style="margin-top:auto;padding-top:4mm;border-top:.5mm solid var(--ink);display:flex;gap:4mm;align-items:center;flex-wrap:wrap"><span class="eyebrow" style="color:var(--ink)">Reports we set up first</span>{reps}</div>
+</div>'''
+
+def ind_sheet_b(n, name):
+    d = IND_DETAIL[name]
+    k = ind_no(name)
+    steps = "".join(f'<div class="card" style="padding:3.6mm 4mm;display:flex;flex-direction:column;gap:1.4mm"><div style="display:flex;align-items:center;gap:2mm"><span style="font:800 13pt/1 var(--fd);color:var(--blue)">{i + 1}</span><span class="tag bl">{app}</span></div>'
+                    f'<div class="h4">{t}</div><p style="font-size:7.3pt;line-height:1.4">{b}</p><div style="margin-top:auto;font:500 6.6pt/1.35 var(--fb);color:var(--muted)">Replaces: {r}</div></div>' for i, (app, t, b, r) in enumerate(d["steps"]))
+    rows = "".join(f'<div style="display:grid;grid-template-columns:30mm 1fr 1fr;gap:4mm;padding:1.45mm 0;border-bottom:.25mm solid var(--line);font-size:7.5pt;line-height:1.35">'
+                   f'<b style="font:700 7.6pt/1.35 var(--fd);color:var(--ink)">{j}</b><span style="color:var(--muted)">{t}</span><span style="color:var(--ink)">{o}</span></div>' for j, t, o in d["ba"])
+    phases = "".join(f'<div class="card w" style="padding:3.4mm 4mm"><div class="eyebrow b">Phase {i + 1}</div><div class="h4" style="margin-top:1.6mm">{t}</div>'
+                     f'<ul class="inc" style="gap:1.2mm;margin-top:2.4mm">{"".join(f"<li style=\"font-size:7.3pt\">{x}</li>" for x in pts)}</ul></div>' for i, (t, pts) in enumerate(d["phases"]))
+    con = "".join(f'<span class="chip">{c}</span>' for c in d["connects"])
+    faq = "".join(f'<div class="qa"><div class="q">{q}</div><p>{a}</p></div>' for q, a in d["faq"])
+    return f'''<div class="ct" id="ind-{d["slug"]}-2">
+<div style="display:flex;align-items:center;gap:2mm"><span class="ref"><i></i>Industry 0{k}</span><span class="eyebrow b">{name} · how it runs</span></div>
+<div class="h2" style="margin-top:3.6mm">Six steps, <span class="mk">one Odoo database.</span></div>
+<div class="sec-h" style="margin-top:4.6mm"><span class="n">C</span><span class="t">How the work flows</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3mm">{steps}</div>
+<div class="sec-h" style="margin-top:4.4mm"><span class="n">D</span><span class="t">Before and after</span></div>
+<div style="border-top:.5mm solid var(--ink)"><div style="display:grid;grid-template-columns:30mm 1fr 1fr;gap:4mm;padding:1.6mm 0;border-bottom:.25mm solid var(--line)"><span class="eyebrow">The job</span><span class="eyebrow">Today</span><span class="eyebrow b">With Odoo</span></div>{rows}</div>
+<div class="sec-h" style="margin-top:4.4mm"><span class="n">E</span><span class="t">How we roll it out · each phase live before the next</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3mm">{phases}</div>
+<div style="display:flex;flex-wrap:wrap;gap:1.4mm;align-items:center;margin-top:4mm"><span class="eyebrow" style="color:var(--ink);margin-right:2mm">Connects to</span>{con}</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6mm;margin-top:auto;padding-top:3mm">{faq}</div>
+</div>'''
 
 def local(n):
     cols = [("Singapore", "SG", ["GST and IRAS reporting under Odoo 20 localisation", "SFRS-aligned accounting", "Ready for the GST InvoiceNow requirement, phased from 1 Nov 2025 to 1 Apr 2031", "On-site work from our Waterloo Street HQ"]),
@@ -368,13 +430,17 @@ def plan():
             seq.insert(len(seq) - 4, ("ai-principles", "ai", "std", "ai-principles"))
         if p["id"] == "mkt":
             seq.append(("offer", "mkt", "std", "offer"))
-    seq += [("ind1", None, "std", "industries"), ("ind2", None, "std", "industries-2"), ("local", None, "std", "local"),
+    seq += [("ind1", None, "std", "industries"), ("ind2", None, "std", "industries-2")]
+    for name, *_ in INDUSTRIES:
+        slug = IND_DETAIL[name]["slug"]
+        seq += [("indA:" + name, None, "std", "ind-" + slug), ("indB:" + name, None, "std", "ind-" + slug + "-2")]
+    seq += [("local", None, "std", "local"),
             ("offices", None, "std", "offices"), ("start", None, "std", "start"), ("back", None, "bare", None)]
     return seq
 
 def main():
     seq = plan()
-    pmap = {}
+    pmap = PMAP
     for i, (key, pid, kind, anchor) in enumerate(seq, 1):
         if anchor:
             pmap[anchor] = i
@@ -397,10 +463,15 @@ def main():
         elif key == "offer": inner = offer(i)
         elif key == "ind1": inner = industries(i, INDUSTRIES[:4], True)
         elif key == "ind2": inner = industries(i, INDUSTRIES[4:], False)
+        elif key.startswith("indA:"): inner = ind_sheet_a(i, key[5:])
+        elif key.startswith("indB:"): inner = ind_sheet_b(i, key[5:])
         elif key == "local": inner = local(i)
         elif key == "offices": inner = offices(i)
         elif key == "start": inner = start(i)
-        out.append(chrome(i, pid, inner, kind, labels.get(key, "")))
+        lab = labels.get(key, "")
+        if key[:5] in ("indA:", "indB:"):
+            lab = "Odoo by industry · <b>" + key[5:] + "</b>"
+        out.append(chrome(i, pid, inner, kind, lab))
     html = ('<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             '<meta name="color-scheme" content="light"><meta name="robots" content="noindex">'
             '<title>TechNext Services Catalogue</title><style>' + CSS + '</style></head><body><main class="book">' + "".join(out) + '</main></body></html>')
@@ -422,7 +493,8 @@ def write_bookjson(seq, pmap):
         secs.sort(key=lambda x: x[1])
         chapters.append({"no": p["n"], "title": p["name"], "page": pmap["d-" + p["id"]], "sections": secs})
     chapters.append({"no": "05", "title": "Industries &amp; reference".replace("&amp;", "&"), "page": pmap["industries"], "sections": [
-        ["Odoo by industry", pmap["industries"]], ["Odoo by industry (continued)", pmap["industries-2"]], ["Localisation: SG, PH, VN", pmap["local"]],
+        ["Odoo by industry", pmap["industries"]], ["Odoo by industry (continued)", pmap["industries-2"]]] + [
+        [nm.replace("&amp;", "&") + ": modules and rollout", pmap["ind-" + IND_DETAIL[nm]["slug"]]] for nm, *_ in INDUSTRIES] + [["Localisation: SG, PH, VN", pmap["local"]],
         ["Where we work", pmap["offices"]], ["How to start", pmap["start"]]]})
     n = len(seq)
     labels = {"1": "Cover", "2": "About TechNext", "3": "Contents", "4": "How we engage", str(n): "Back cover"}
