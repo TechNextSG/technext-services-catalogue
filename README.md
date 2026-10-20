@@ -20,3 +20,11 @@ Then bump `?v=` in `index.html` if reader.css / reader.js changed.
 
 - Content: `_src/data.py` (facts from technext.asia, Oct 2026; no prices, Odoo never "free", no cyber security). Visuals: `_src/visuals.py`. Styles: `_src/css.py`.
 - Viewer: `assets/reader.js`, `assets/reader.css` (TechNext tokens, light only). StPageFlip in `assets/vendor/` is PATCHED - run `python tools/patch_pageflip.py` after any re-download.
+
+## Publish to technext.asia
+
+The live catalogue is https://technext.asia/services-catalogue (served by the TechNext-Website repo, folder services-catalogue/). After a rebuild:
+
+    python -B tools/publish_site.py <TechNext-Website checkout>
+
+then build + audit that repo, PR and merge (Vercel deploys master). The GitHub Pages copy here is the working preview.
