@@ -451,7 +451,7 @@
         width: S.PW, height: S.PH, size: 'stretch',
         minWidth: this.portrait ? 1e6 : 1, maxWidth: 1e5, minHeight: 1, maxHeight: 1e5,
         autoSize: false, showCover: true, usePortrait: true, mobileScrollSupport: false,
-        drawShadow: true, maxShadowOpacity: 0.45, flippingTime: reduced ? 220 : TURN_MS,
+        drawShadow: true, maxShadowOpacity: 0.7, flippingTime: reduced ? 220 : TURN_MS,
         startPage: idx, startZIndex: 1, clickEventForward: true, disableFlipByClick: true,
         showPageCorners: true, swipeDistance: 24, useMouseEvents: true,
       });

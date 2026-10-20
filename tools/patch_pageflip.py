@@ -15,7 +15,7 @@ import sys
 
 P = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "vendor", "page-flip.browser.js")
 HEADER = ("/*! StPageFlip 2.0.7 (MIT, github.com/Nodlik/StPageFlip) - vendored and PATCHED by tools/patch_pageflip.py:\n"
-          "   flipPrev corner fix, deduplicated per-frame cssText writes, soft covers, eased turns. */\n")
+          "   flipPrev corner fix, deduplicated per-frame cssText writes, soft covers, eased turns, proper shadows. */\n")
 HELPER = "function __nvlCss(e,v){if(e.__nvlCss!==v){e.style.cssText=v;e.__nvlCss=v}}\n"
 
 
@@ -81,9 +81,29 @@ def main():
                   'animateFlippingTo(t,e,i,s=!0){this.render.__nvlEase="user_fold"===this.state||"fold_corner"===this.state?1:0;const n=')
     assert "q=a.ease===1" in s and "ease:this.__nvlEase||0" in s and "this.render.__nvlEase=" in s, "easing patch failed"
 
+    # 5. proper shadows. The library faded the shadow out linearly as the turn progressed while
+    #    widening it, so it was faintest exactly when the sheet is lifted highest, and drew it as a
+    #    single hard linear ramp. Now the shadow follows the lift (sin curve: light at the start and
+    #    end, deepest mid-turn), the cast shadow on the page beneath falls off softly, and the curl of
+    #    the turning sheet gets a shaded fold with a faint highlight where the paper bends to the light.
+    old_sd = "width:3*this.getRect().pageWidth/4*i/100,opacity:(100-i)*n/100/100"
+    new_sd = ("width:this.getRect().pageWidth*(.2+.55*Math.sin(Math.PI*Math.min(100,Math.max(0,i))/100)),"
+              "opacity:n/100*(.25+.75*Math.sin(Math.PI*Math.min(100,Math.max(0,i))/100))")
+    s = s.replace(old_sd, new_sd)
+    s = s.replace("background: linear-gradient(${n}, rgba(0, 0, 0, ${this.shadow.opacity}), rgba(0, 0, 0, 0));",
+                  "background: linear-gradient(${n}, rgba(0, 0, 0, ${this.shadow.opacity}) 0%, rgba(0, 0, 0, ${this.shadow.opacity*.62}) 10%, "
+                  "rgba(0, 0, 0, ${this.shadow.opacity*.3}) 34%, rgba(0, 0, 0, ${this.shadow.opacity*.09}) 66%, rgba(0, 0, 0, 0) 100%);")
+    i0 = s.index("drawInnerShadow(){const t=this.getRect(),e=3*this.shadow.width/4")
+    m = re.compile(r"background: linear-gradient\(\$\{s\},.*?100%\);", re.S).search(s, i0)
+    assert m and m.start() - i0 < 2000, "inner shadow gradient not found"
+    s = s[:m.start()] + ("background: linear-gradient(${s}, rgba(0, 0, 0, ${this.shadow.opacity*.6}) 0%, rgba(0, 0, 0, ${this.shadow.opacity*.14}) 9%, "
+                         "rgba(255, 255, 255, ${this.shadow.opacity*.32}) 19%, rgba(0, 0, 0, ${this.shadow.opacity*.42}) 40%, "
+                         "rgba(0, 0, 0, ${this.shadow.opacity*.12}) 68%, rgba(0, 0, 0, 0) 100%);") + s[m.end():]
+    assert new_sd in s and "opacity*.62}) 10%" in s and "opacity*.32}) 19%" in s, "shadow patch failed"
+
     s = HEADER + HELPER + s
     open(P, "w", encoding="utf-8").write(s)
-    print(f"patched: flipPrev, {n} cssText writes, soft covers, eased turns  ->  {P}")
+    print(f"patched: flipPrev, {n} cssText writes, soft covers, eased turns, shadows  ->  {P}")
     return 0
 
 

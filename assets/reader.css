@@ -127,7 +127,7 @@ kbd {
 .app {
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);   /* never wider than the window: a long bar can't push the stage, zoom or dock off-screen */
   grid-template-rows: var(--bar-h) 1fr var(--dock-h);
   grid-template-areas: "bar" "stage" "dock";
 }
@@ -168,14 +168,14 @@ kbd {
   display: flex; align-items: baseline; justify-content: center; gap: 8px;
   font-size: 13px; color: var(--ink-2); white-space: nowrap;
 }
-.crumb__no { align-self: center; padding: 4px 7px; border-radius: 999px; background: var(--brand-tint); color: var(--brand-ink); font-size: 11px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
-.crumb__ch { color: var(--ink); font-weight: 600; }
-.crumb__sep { color: var(--line-2); }
-.crumb__sec { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.crumb__no { flex: none; align-self: center; padding: 4px 7px; border-radius: 999px; background: var(--brand-tint); color: var(--brand-ink); font-size: 11px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.crumb__ch { color: var(--ink); font-weight: 600; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 0 1 auto; }
+.crumb__sep { color: var(--line-2); flex: none; }
+.crumb__sec { overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 0 3 auto; }
 .crumb > * { animation: crumbIn 260ms var(--ease) both; }
 @keyframes crumbIn { from { opacity: 0; transform: translateY(3px); } }
 
-.bar__tools { display: flex; align-items: center; gap: 4px; flex: none; }
+.bar__tools { display: flex; align-items: center; gap: 4px; flex: none; }   /* buttons keep their size; the crumb gives way */
 
 .btn-icon {
   position: relative;
@@ -192,7 +192,7 @@ kbd {
 
 .search {
   position: relative; display: flex; align-items: center;
-  width: clamp(220px, 22vw, 320px); height: 42px; margin-right: 6px;
+  width: clamp(220px, 22vw, 320px); height: 42px; margin-right: 6px; flex: 0 1 auto; min-width: 160px;
   background: var(--field); border: 1.5px solid transparent; border-radius: var(--r);
   transition: background var(--t) var(--ease), border-color var(--t) var(--ease), box-shadow var(--t) var(--ease);
 }
@@ -750,6 +750,16 @@ kbd {
 /* ---------- responsive ---------- */
 @media (max-width: 1180px) {
   .crumb { justify-content: flex-start; }
+}
+/* the top bar gives way in steps so its buttons never run off the right edge */
+@media (max-width: 1200px) {
+  .bar__title { display: none; }
+}
+@media (max-width: 900px) {
+  .search { display: none; }
+  #btnSearch { display: inline-flex !important; }
+  .cta { width: 42px; padding: 0; justify-content: center; }
+  .cta span { display: none; }
 }
 @media (max-width: 980px) {
   .bar__title { display: none; }
