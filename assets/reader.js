@@ -18,8 +18,9 @@
   const icon = id => `<svg><use href="#i-${id}"/></svg>`;
   const mqNarrow = matchMedia('(max-width: 760px)');
   const mqOverlay = matchMedia('(max-width: 1180px)');
-  // phones read the sheets as one scrolling column - no flip-book, no view switcher (tablets and desktop keep all views)
-  const mqPhone = matchMedia('(max-width: 760px), (pointer: coarse) and (max-height: 500px)');
+  // phones read the sheets as one scrolling column - no flip-book, no view switcher (tablets and desktop keep all views).
+  // A narrow desktop window (half-screen, or a laptop at 125-150% scaling) is not a phone: it keeps the book.
+  const mqPhone = matchMedia('(max-width: 520px), (pointer: coarse) and (max-width: 760px), (pointer: coarse) and (max-height: 500px)');
   const phone = () => mqPhone.matches;
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const isTouch = matchMedia('(hover: none)').matches;
@@ -1636,7 +1637,8 @@
     const start = h.p || cfg.settings.startPage || 1;
     S.page = start;
     S.visible = [start];
-    const view = phone() ? 'scroll' : (h.v || store.get('view', 'book'));
+    // every visit opens as a book; Scroll or Grid only when the link asks for it (#v=scroll)
+    const view = phone() ? 'scroll' : (h.v || 'book');
     el.app.classList.toggle('phone', phone());
 
     // image tier is chosen once from the real stage: on-screen page width x device pixel ratio
