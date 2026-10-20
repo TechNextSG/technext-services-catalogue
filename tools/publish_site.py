@@ -26,7 +26,7 @@ def main():
     os.makedirs(os.path.join(dst, "assets", "logo"))
 
     # page: absolute asset paths, PDF next to the page, canonical on technext.asia
-    html = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
+    html = open(os.path.join(ROOT, "viewer.html"), encoding="utf-8").read()   # index.html here only redirects to technext.asia
     for a, b in (('"assets/', '"' + BASE + 'assets/'), ('"book/', '"' + BASE + 'book/'), ('"out/', '"' + BASE)):
         html = html.replace(a, b)
     if 'rel="canonical"' not in html:
