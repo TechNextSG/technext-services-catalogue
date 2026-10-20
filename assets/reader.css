@@ -396,6 +396,8 @@ kbd {
 .book-shadow.on { opacity: 1; }
 
 .page { background: var(--sheet); overflow: hidden; }
+/* closing onto a cover: nothing lies under the lifting sheet, so no shadow is cast there */
+.book-root.void-turn .stf__outerShadow { display: none !important; }
 .page__img {
   position: absolute; inset: 0; width: 100%; height: 100%; display: block;
   user-select: none; -webkit-user-drag: none; pointer-events: none;

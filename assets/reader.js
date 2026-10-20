@@ -497,11 +497,14 @@
           e.__nvlCss = undefined;   // next frame the library rewrites this page's style, which drops the cut again
         },
       };
+      // .void-turn: the half under the lifting sheet is empty, so the cast shadow the library would paint
+      // there (a grey page-shaped gradient - a "ghost page") is hidden for the length of that turn
       pc.getBottomPage = dir => {
         if (render.getOrientation() !== 'portrait') {
           const next = pc.getSpread()[pc.getCurrentSpreadIndex() + (dir === 0 ? 1 : -1)];
-          if (next && next.length === 1) return nothing;
+          if (next && next.length === 1) { this.root.classList.add('void-turn'); return nothing; }
         }
+        this.root.classList.remove('void-turn');
         return orig(dir);
       };
     },
@@ -542,6 +545,7 @@
       el.bookHost.classList.toggle('grabbing', state === 'user_fold');
       if (state === 'read') {
         this.fromSpread = null;
+        if (this.root) this.root.classList.remove('void-turn');
         this.frame();
         if (this.chaining) return;   // the next turn starts in this same call (fast riffling)
         this.flip.getSettings().flippingTime = reduced ? 220 : TURN_MS;
@@ -580,8 +584,11 @@
       }
       // the shadow follows the paper: a half that gains a page only gets it once the turning sheet has
       // crossed the spine (p > 0.5); a half that loses its page uncovers as the sheet lifts off.
-      const Lp = a.L === b.L ? a.L : (a.L > b.L ? Math.min(1, 2 * (1 - p)) : p);
-      const Rp = a.R === b.R ? a.R : (a.R < b.R ? Math.max(1, 2 * p) : 2 - p);
+      // A half that loses its page (closing onto the front or back cover) has nothing under the lifting
+      // sheet, so its shadow leaves within the first quarter of the turn - otherwise the drop shadow keeps
+      // outlining an empty "ghost" page there while the sheet is in the air.
+      const Lp = a.L === b.L ? a.L : (a.L > b.L ? Math.min(1, 2 * (1 - p)) : Math.min(1, 4 * p));
+      const Rp = a.R === b.R ? a.R : (a.R < b.R ? Math.max(1, 2 * p) : Math.max(1, 2 - 4 * p));
       // a turn completed early while riffling would make these jump: ease big jumps over a few frames
       // Steady motion is followed exactly. Only a sudden jump of the target (a turn completed early while
       // riffling) is absorbed: it becomes an offset that fades out over a few frames. Decay runs on the
