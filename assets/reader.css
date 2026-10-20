@@ -401,12 +401,16 @@ kbd {
   user-select: none; -webkit-user-drag: none; pointer-events: none;
 }
 .page__shade { position: absolute; inset: 0; pointer-events: none; }
-.stf__wrapper.--landscape .page.--left .page__shade {
-  background: linear-gradient(to left, rgba(0, 0, 0, .13) 0, rgba(0, 0, 0, .05) 1.6%, rgba(0, 0, 0, 0) 6%);
+/* spine (gutter) shading, the same in the book and in zoom: deep enough to read on the dark divider pages too */
+.stf__wrapper.--landscape .page.--left .page__shade,
+.zoom__content:has(.zpage + .zpage) .zpage:first-child::after {
+  background: linear-gradient(to left, rgba(0, 0, 0, .26) 0, rgba(0, 0, 0, .12) 1.4%, rgba(0, 0, 0, .04) 4%, rgba(0, 0, 0, 0) 8%);
 }
-.stf__wrapper.--landscape .page.--right .page__shade {
-  background: linear-gradient(to right, rgba(0, 0, 0, .14) 0, rgba(255, 255, 255, .25) .6%, rgba(0, 0, 0, .04) 2%, rgba(0, 0, 0, 0) 7%);
+.stf__wrapper.--landscape .page.--right .page__shade,
+.zoom__content:has(.zpage + .zpage) .zpage:last-child::after {
+  background: linear-gradient(to right, rgba(0, 0, 0, .26) 0, rgba(0, 0, 0, .1) 1.2%, rgba(0, 0, 0, .035) 4%, rgba(0, 0, 0, 0) 8%);
 }
+.zoom__content:has(.zpage + .zpage) .zpage::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1; }
 .view--book .book-host { cursor: default; touch-action: pan-y; }
 .view--book .book-host.over-page { cursor: zoom-in; }
 .view--book .book-host.over-target { cursor: pointer; }
