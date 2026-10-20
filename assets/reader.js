@@ -308,6 +308,13 @@
         if (this.ctx.state === 'suspended') this.ctx.resume();
       } catch (e) { /* audio unavailable */ }
     },
+    // Creating an AudioContext takes tens of ms. Done during the first turn it stalled that turn's
+    // opening frames, so the context and noise are made while the reader is idle; a gesture only resumes it.
+    prepare() {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC || !S.sound || this.ctx) return;
+      try { this.ctx = new AC(); this.buffer(); } catch (e) { /* audio unavailable */ }
+    },
     buffer() {
       if (this.noise) return this.noise;
       const ctx = this.ctx, len = Math.floor(ctx.sampleRate * 0.8), b = ctx.createBuffer(1, len, ctx.sampleRate), d = b.getChannelData(0);
@@ -398,7 +405,7 @@
   }
 
   // ------------------------------------------------------------------ BOOK view (StPageFlip, patched - see tools/patch_pageflip.py)
-  const TURN_MS = 540;    // one page turn
+  const TURN_MS = 600;    // one page turn (eased in and out, so a touch longer than a linear turn)
   const QUICK_MS = 280;   // turns started while another is still running (rapid clicks / held arrow key)
   const Book = {
     flip: null, root: null, portrait: false, idx: 0, pages: [], els: [], state: 'read', pending: null, built: false,
@@ -1648,6 +1655,7 @@
     setTimeout(() => { el.loader.hidden = true; }, 700);
     if (h.q) { openPanel('search'); applyQuery(h.q); }
     else setTimeout(() => ensureText(), 1500);
+    (window.requestIdleCallback || (f => setTimeout(f, 800)))(() => Sound.prepare(), { timeout: 2000 });
 
     const last = store.get('lastPage', null);
     if (!h.p && last && last > 3 && last <= S.N) setTimeout(() => toast(`Continue where you left off — p. ${last}`, 'Continue', () => goTo(last), 8000), 900);
