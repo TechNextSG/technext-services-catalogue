@@ -1650,7 +1650,7 @@
     const hide = new Set(cfg.settings.hideInBookMode || []);
     Book.pages = range(1, S.N).filter(n => !hide.has(n));
     el.pageTotal.textContent = S.N;
-    el.about.innerHTML = `${esc(cfg.brand)} ${esc(cfg.title)} · ${esc(cfg.publisher)}<br>${esc(cfg.address)}<br><a href="mailto:${esc(cfg.contact.email)}">${esc(cfg.contact.email)}</a> · WhatsApp +65 8839 6998 · <a href="${esc(cfg.contact.website)}" target="_blank" rel="noopener">technext.asia</a>`;
+    el.about.innerHTML = `${esc(cfg.brand)} ${esc(cfg.title)} · ${esc(cfg.publisher)}<br>${esc(cfg.address)}<br><a href="mailto:${esc(cfg.contact.email)}">${esc(cfg.contact.email)}</a> · <a href="${esc(cfg.contact.website)}" target="_blank" rel="noopener">technext.asia</a>`;
     el.optSound.checked = !!S.sound;
     el.optBlanks.checked = !!S.showBlanks;
     applyTheme(S.theme);

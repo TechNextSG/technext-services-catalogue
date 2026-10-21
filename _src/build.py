@@ -393,11 +393,11 @@ def start(n):
  <div class="card w" style="padding:6mm"><div class="eyebrow" style="color:var(--navy)">Helpful to include in your first message</div><ul class="inc" style="margin-top:4mm">{"".join(f"<li>{x}</li>" for x in chk)}</ul></div>
  <div class="card" style="padding:6mm;display:flex;flex-direction:column;gap:3.4mm">
   <div class="eyebrow">Contact</div>
-  {"".join(f'<div><div style="font:600 6.4pt/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">{k}</div><div style="font:700 10.5pt/1.3 var(--fd);color:var(--ink);margin-top:1mm">{v}</div></div>' for k, v in [("Email", "sales@technext.asia"), ("WhatsApp", "+65 8839 6998"), ("Web", "technext.asia/quotation"), ("LinkedIn", "linkedin.com/company/technextasia")])}
+  {"".join(f'<div><div style="font:600 6.4pt/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">{k}</div><div style="font:700 10.5pt/1.3 var(--fd);color:var(--ink);margin-top:1mm">{v}</div></div>' for k, v in [("Email", "sales@technext.asia"), ("WhatsApp", "Message us on WhatsApp"), ("Web", "technext.asia/quotation"), ("LinkedIn", "linkedin.com/company/technextasia")])}
  </div>
 </div>
 <div class="card" style="margin-top:auto;padding:6mm;display:grid;grid-template-columns:1fr 1fr;gap:8mm">
- <div><div class="h4">Who replies?</div><p style="font-size:7.8pt;margin-top:1.4mm">The TechNext team, from sales@technext.asia. WhatsApp messages go to +65 8839 6998.</p></div>
+ <div><div class="h4">Who replies?</div><p style="font-size:7.8pt;margin-top:1.4mm">The TechNext team, from sales@technext.asia. WhatsApp messages go to the same sales team.</p></div>
  <div><div class="h4">What do you do with my details?</div><p style="font-size:7.8pt;margin-top:1.4mm">We use them only to reply. See technext.asia/privacy.</p></div>
 </div></div>'''
 
@@ -409,7 +409,7 @@ def back(n):
             '<div style="font:500 10pt/1.6 var(--fb);color:#DDE7F8;margin-top:6mm">Odoo ERP Solution and AI Automation · IoT · Apps · Networks</div></div>'
             '<div style="position:absolute;left:17mm;right:17mm;bottom:40mm;display:grid;grid-template-columns:repeat(3,1fr);gap:8mm;border-top:.25mm solid rgba(255,255,255,.25);padding-top:6mm">'
             + "".join(f'<div><div style="font:700 6.2pt/1 var(--fb);letter-spacing:.16em;color:#9DB3DD">{k}</div><div style="font:600 9pt/1.5 var(--fb);color:#fff;margin-top:2mm">{v}</div></div>'
-                      for k, v in [("CONTACT", "sales@technext.asia<br>WhatsApp +65 8839 6998"), ("WEB", "technext.asia<br>@technextasia"),
+                      for k, v in [("CONTACT", "sales@technext.asia<br>Message us on WhatsApp"), ("WEB", "technext.asia<br>@technextasia"),
                                    ("OFFICES", "Singapore · Taguig City<br>Ho Chi Minh City")]) +
             '</div><div style="position:absolute;left:17mm;right:17mm;bottom:16mm;display:flex;justify-content:space-between;align-items:flex-end">'
             '<div style="font:500 6.4pt/1.6 var(--fb);color:#9DB3DD">TECHNEXT PTE. LTD. (UEN 202699888G)<br>261 Waterloo Street, #03-36, Waterloo Centre, Singapore 180261<br>'
