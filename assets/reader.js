@@ -1274,7 +1274,7 @@
     }
   }
 
-  const HINTS = ['Accounting', 'ERP-01', 'RAG', 'WhatsApp', 'InvoiceNow', 'IoT', 'Odoo.sh', 'Training'];
+  const HINTS = ['Accounting', 'ERP-01', 'RAG', 'WhatsApp', 'InvoiceNow', 'Payroll', 'Odoo.sh', 'Training'];
   function renderResults(results) {
     const qi = S.qi;
     if (!qi) {

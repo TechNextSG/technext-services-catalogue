@@ -41,7 +41,7 @@
  "back": [
   [
    "Back cover · contact",
-   54
+   50
   ]
  ],
  "pageLabels": {
@@ -49,11 +49,10 @@
   "2": "About TechNext",
   "3": "Contents",
   "4": "How we engage",
-  "54": "Back cover",
+  "50": "Back cover",
   "5": "Practice 01 · Odoo ERP",
   "18": "Practice 02 · Enterprise AI",
-  "24": "Practice 03 · Websites & Marketing",
-  "29": "Practice 04 · Technology"
+  "24": "Practice 03 · Websites & Marketing"
  },
  "chapters": [
   {
@@ -159,79 +158,60 @@
   },
   {
    "no": "04",
-   "title": "Technology",
+   "title": "Industries & reference",
    "page": 29,
    "sections": [
     [
-     "TEC-01 · IoT Solutions",
-     30
-    ],
-    [
-     "TEC-02 · App Development",
-     31
-    ],
-    [
-     "TEC-03 · Office Networks & Wi-Fi",
-     32
-    ]
-   ]
-  },
-  {
-   "no": "05",
-   "title": "Industries & reference",
-   "page": 33,
-   "sections": [
-    [
      "Odoo by industry",
-     33
+     29
     ],
     [
      "Odoo by industry (continued)",
-     34
+     30
     ],
     [
      "Retail: modules and rollout",
-     35
+     31
     ],
     [
      "Food & beverage: modules and rollout",
-     37
+     33
     ],
     [
      "Manufacturing: modules and rollout",
-     39
+     35
     ],
     [
      "Ecommerce: modules and rollout",
-     41
+     37
     ],
     [
      "Construction: modules and rollout",
-     43
+     39
     ],
     [
      "Clinics & healthcare: modules and rollout",
-     45
+     41
     ],
     [
      "Travel & tours: modules and rollout",
-     47
+     43
     ],
     [
      "Health & wellness: modules and rollout",
-     49
+     45
     ],
     [
      "Localisation: SG, PH, VN",
-     51
+     47
     ],
     [
      "Where we work",
-     52
+     48
     ],
     [
      "How to start",
-     53
+     49
     ]
    ]
   }

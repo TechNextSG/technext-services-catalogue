@@ -1,6 +1,6 @@
 # TechNext Services Catalogue (Edition 2026/27)
 
-38-page A4 services catalogue for TechNext Pte. Ltd., with an interactive flip-book viewer. Unlisted (noindex).
+50-page A4 services catalogue (15 services, 3 practices) for TechNext Pte. Ltd., with an interactive flip-book viewer. Unlisted (noindex).
 
 - `index.html` - redirect to https://technext.asia/services-catalogue (keeps `#p=`). `viewer.html` - **flip-book viewer** (engine from the nivellipso / HST catalogue reader: page curl, Book / Scroll / Pages views, zoom, full-text search, contents, bookmarks, share links `#p=12`; phones get Scroll only)
 - `print.html` - the catalogue source page (prints to A4)

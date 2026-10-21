@@ -43,24 +43,24 @@ def cover(n):
             '<img src="assets/logo/technext-horizontal-white.png" style="position:absolute;left:17mm;top:17mm;height:8mm" alt="TechNext">'
             '<div style="position:absolute;right:17mm;top:18mm;font:700 6.6pt/1 var(--fb);letter-spacing:.18em;color:#9DB3DD;text-transform:uppercase">' + EDITION + '</div>'
             '<div style="position:absolute;left:17mm;top:62mm;width:112mm">'
-            '<div class="eyebrow" style="color:#6FA0F5">Odoo ERP · Enterprise AI · Websites &amp; Marketing · Technology</div>'
+            '<div class="eyebrow" style="color:#6FA0F5">Odoo ERP · Enterprise AI · Websites &amp; Marketing</div>'
             '<div style="font:800 54pt/.98 var(--fd);color:#fff;letter-spacing:-.04em;margin-top:6mm">Services<br>Catalogue</div>'
             '<div style="width:22mm;height:1.2mm;background:#6FA0F5;margin:8mm 0 7mm"></div>'
-            '<div style="font:400 12pt/1.5 var(--fb);color:#DDE7F8;max-width:104mm">Eighteen services across four practices, from one team in Singapore, the Philippines and Vietnam. You don\'t need to hire your own team.</div></div>'
+            '<div style="font:400 12pt/1.5 var(--fb);color:#DDE7F8;max-width:104mm">Fifteen services across three practices, from one team in Singapore, the Philippines and Vietnam. You don\'t need to hire your own team.</div></div>'
             f'<div style="position:absolute;left:136mm;right:17mm;top:62mm"><div style="font:700 6pt/1 var(--fb);letter-spacing:.18em;color:#9DB3DD;margin-bottom:2.4mm">IN THIS CATALOGUE</div>{idx}</div>'
             '<div style="position:absolute;left:17mm;right:17mm;bottom:16mm;display:flex;align-items:flex-end;justify-content:space-between">'
             '<div style="display:flex;gap:10mm">' + "".join(
                 f'<div><div style="font:800 18pt/1 var(--fd);color:#fff">{v}</div><div style="font:600 6.4pt/1.3 var(--fb);color:#9DB3DD;margin-top:1.4mm">{k}</div></div>'
-                for v, k in [("10+", "countries served"), ("11+", "enterprise clients"), ("3", "hubs: SG · PH · VN"), ("4", "practices")]) + '</div>'
+                for v, k in [("10+", "countries served"), ("11+", "enterprise clients"), ("3", "hubs: SG · PH · VN"), ("3", "practices")]) + '</div>'
             '<div style="background:#fff;border-radius:2.4mm;padding:2.6mm 3.4mm"><img src="assets/logo/odoo-ready-partner.png" style="height:11mm" alt="Odoo Ready Partner"></div></div></div>')
 
 def about(n):
     return f'''<div class="ct">
 <div class="eyebrow b">About TechNext</div>
-<div class="h1" style="margin-top:4mm;max-width:150mm">No need to hire your own team for <span class="mk">Odoo, websites, branding or tech.</span></div>
+<div class="h1" style="margin-top:4mm;max-width:150mm">No need to hire your own team for <span class="mk">Odoo, AI, websites or branding.</span></div>
 <div style="display:grid;grid-template-columns:1.25fr 1fr;gap:10mm;margin-top:8mm">
  <div>
-  <p class="lead">TechNext Pte. Ltd. is a Singapore-based Odoo Ready Partner. We implement Odoo ERP end to end, build enterprise AI, run websites and social media, and deliver IoT, app development and network services for growing companies.</p>
+  <p class="lead">TechNext Pte. Ltd. is a Singapore-based Odoo Ready Partner. We implement Odoo ERP end to end, build enterprise AI, and run websites, social media and brand design for growing companies.</p>
   <p style="margin-top:4mm;font-size:9pt;line-height:1.6">Sales, discovery and on-site work run from our Singapore headquarters. Odoo configuration, custom modules and integrations are built at our main development and consulting hub in Taguig City, Metro Manila, and our AI engineers in Ho Chi Minh City join whenever AI is in scope. One project, one team, and the same people after go-live.</p>
  </div>
  <div class="card w" style="padding:6mm">
@@ -76,7 +76,7 @@ def about(n):
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5mm;margin-top:10mm;padding-top:7mm;border-top:.5mm solid var(--ink)">
  {"".join(f'<div class="stat"><div class="v">{v}</div><div class="k">{k}</div></div>' for v, k in [("10+", "Countries with clients"), ("11+", "Enterprise clients"), ("3", "Hubs in Singapore, the Philippines and Vietnam"), ("4", "Core AI disciplines")])}
 </div>
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin-top:10mm">
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:10mm">
  {"".join(f'<a href="#d-{p["id"]}" class="card" style="display:flex;flex-direction:column;gap:2mm;min-height:52mm"><div style="font:800 20pt/1 var(--fd);color:var(--mist)">{p["n"]}</div><div class="h3">{p["name"]}</div><div style="font-size:7.6pt;line-height:1.45">{p["lead"].split(". ")[0].rstrip(".")}.</div></a>' for p in PRACTICES)}
 </div>
 <div class="small" style="margin-top:auto;padding-top:6mm">TechNext Pte. Ltd. · UEN 202699888G · 261 Waterloo Street, #03-36, Waterloo Centre, Singapore 180261</div>
@@ -89,7 +89,7 @@ def contents(n, pmap):
                        f'<span style="font:700 6.4pt/1 var(--fb);letter-spacing:.1em;color:var(--blue)">{s["code"]}</span><span style="font:600 8.6pt/1.3 var(--fb);color:var(--ink)">{s["name"]}</span>'
                        f'<span style="text-align:right;font:700 8.6pt/1 var(--fd);color:var(--ink)">{pmap[s["id"]]:02d}</span></a>' for s in S if s["p"] == p["id"])
         extra = {"erp": [("odoo-apps", "Odoo apps we implement"), ("method", "Our implementation method"), ("hosting", "Where Odoo runs")],
-                 "ai": [("ai-principles", "How our AI stays in control")], "mkt": [("offer", "Website design with your Odoo")], "tech": []}[p["id"]]
+                 "ai": [("ai-principles", "How our AI stays in control")], "mkt": [("offer", "Website design with your Odoo")]}[p["id"]]
         rows += "".join(f'<a href="#{a}" style="display:grid;grid-template-columns:16mm 1fr 10mm;align-items:baseline;padding:2.2mm 0;border-bottom:.25mm solid var(--line)">'
                         f'<span style="font:700 6.4pt/1 var(--fb);letter-spacing:.1em;color:var(--muted)">GUIDE</span><span style="font:500 8.6pt/1.3 var(--fb);color:var(--body)">{t}</span>'
                         f'<span style="text-align:right;font:700 8.6pt/1 var(--fd);color:var(--ink)">{pmap[a]:02d}</span></a>' for a, t in extra)
@@ -101,17 +101,17 @@ def contents(n, pmap):
                    f'<span style="text-align:right;font:700 8.6pt/1 var(--fd);color:var(--ink)">{pmap[a]:02d}</span></a>' for a, t in ref)
     return f'''<div class="ct">
 <div class="eyebrow b">Contents</div>
-<div class="h1" style="margin-top:4mm">Four practices. <span class="mk">One team.</span></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:9mm 10mm;margin-top:9mm">{"".join(blocks)}</div>
+<div class="h1" style="margin-top:4mm">Three practices. <span class="mk">One team.</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:9mm 10mm;margin-top:9mm">{blocks[0]}<div style="display:flex;flex-direction:column;gap:9mm">{"".join(blocks[1:])}</div></div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10mm;margin-top:9mm">
  <div><div style="padding-bottom:2.4mm;border-bottom:.5mm solid var(--ink)" class="h3">Reference</div>{refs}</div>
  <div class="card w" style="padding:5mm"><div class="h4">Reading this catalogue</div><p style="font-size:7.8pt;margin-top:2mm">Each service has a reference code (for example <b>ERP-01</b>). Quote the codes you're interested in when you write to <b>sales@technext.asia</b>, and we'll come back with a written scope. Screens marked <span class="tag am">Sample data</span> are illustrations, not client data.</p></div>
 </div></div>'''
 
 def anatomy(n):
-    models = [("Project", "One-off, scoped and quoted in writing before work begins.", "Implementation · customisation · websites · brand · apps · IoT · networks"),
+    models = [("Project", "One-off, scoped and quoted in writing before work begins.", "Implementation · customisation · AI · websites · brand"),
               ("Monthly retainer", "A steady monthly plan, scoped to channels and volume.", "Social media management"),
-              ("Support plan", "Agreed response targets, tracked on every ticket.", "Odoo support · network support"),
+              ("Support plan", "Agreed response targets, tracked on every ticket.", "Odoo support after go-live"),
               ("Standalone discovery", "A written scope that is yours to keep, with or without us.", "Odoo consultation &amp; discovery")]
     return f'''<div class="ct">
 <div class="eyebrow b">How we engage</div>
@@ -406,7 +406,7 @@ def back(n):
             '<div style="position:absolute;left:17mm;right:17mm;top:70mm">'
             '<img src="assets/logo/technext-vertical-white.png" style="height:34mm" alt="TechNext">'
             '<div style="font:800 30pt/1.05 var(--fd);color:#fff;letter-spacing:-.03em;margin-top:14mm;max-width:150mm">You don\'t need to hire<br>your own team.</div>'
-            '<div style="font:500 10pt/1.6 var(--fb);color:#DDE7F8;margin-top:6mm">Odoo ERP Solution and AI Automation · IoT · Apps · Networks</div></div>'
+            '<div style="font:500 10pt/1.6 var(--fb);color:#DDE7F8;margin-top:6mm">Odoo ERP Solution and AI Automation · Websites · Marketing</div></div>'
             '<div style="position:absolute;left:17mm;right:17mm;bottom:40mm;display:grid;grid-template-columns:repeat(3,1fr);gap:8mm;border-top:.25mm solid rgba(255,255,255,.25);padding-top:6mm">'
             + "".join(f'<div><div style="font:700 6.2pt/1 var(--fb);letter-spacing:.16em;color:#9DB3DD">{k}</div><div style="font:600 9pt/1.5 var(--fb);color:#fff;margin-top:2mm">{v}</div></div>'
                       for k, v in [("CONTACT", "sales@technext.asia<br>Message us on WhatsApp"), ("WEB", "technext.asia<br>@technextasia"),
@@ -485,14 +485,14 @@ def main():
 def write_bookjson(seq, pmap):
     import json
     guides = {"erp": [("Odoo apps we implement", "odoo-apps"), ("Our implementation method", "method"), ("Where Odoo runs", "hosting")],
-              "ai": [("How our AI stays in control", "ai-principles")], "mkt": [("Website design with your Odoo", "offer")], "tech": []}
+              "ai": [("How our AI stays in control", "ai-principles")], "mkt": [("Website design with your Odoo", "offer")]}
     chapters = []
     for p in PRACTICES:
         secs = [[f'{s["code"]} · {s["name"]}', pmap[s["id"]]] for s in S if s["p"] == p["id"]]
         secs += [[g, pmap[a]] for g, a in guides[p["id"]]]
         secs.sort(key=lambda x: x[1])
         chapters.append({"no": p["n"], "title": p["name"], "page": pmap["d-" + p["id"]], "sections": secs})
-    chapters.append({"no": "05", "title": "Industries &amp; reference".replace("&amp;", "&"), "page": pmap["industries"], "sections": [
+    chapters.append({"no": f"{len(PRACTICES) + 1:02d}", "title": "Industries &amp; reference".replace("&amp;", "&"), "page": pmap["industries"], "sections": [
         ["Odoo by industry", pmap["industries"]], ["Odoo by industry (continued)", pmap["industries-2"]]] + [
         [nm.replace("&amp;", "&") + ": modules and rollout", pmap["ind-" + IND_DETAIL[nm]["slug"]]] for nm, *_ in INDUSTRIES] + [["Localisation: SG, PH, VN", pmap["local"]],
         ["Where we work", pmap["offices"]], ["How to start", pmap["start"]]]})
