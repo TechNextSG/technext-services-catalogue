@@ -41,7 +41,7 @@
  "back": [
   [
    "Back cover · contact",
-   50
+   58
   ]
  ],
  "pageLabels": {
@@ -49,169 +49,205 @@
   "2": "About TechNext",
   "3": "Contents",
   "4": "How we engage",
-  "50": "Back cover",
-  "5": "Practice 01 · Odoo ERP",
-  "18": "Practice 02 · Enterprise AI",
-  "24": "Practice 03 · Websites & Marketing"
+  "58": "Back cover",
+  "5": "Practice 01 · BIR Compliance",
+  "13": "Practice 02 · Odoo ERP",
+  "26": "Practice 03 · Enterprise AI",
+  "32": "Practice 04 · Websites & Marketing"
  },
  "chapters": [
   {
    "no": "01",
-   "title": "Odoo ERP",
+   "title": "BIR Compliance",
    "page": 5,
    "sections": [
     [
-     "ERP-01 · Odoo ERP Implementation",
+     "Where BIR compliance hurts",
      6
     ],
     [
-     "ERP-02 · Odoo Consultation & Discovery",
+     "BIR readiness check",
      7
     ],
     [
-     "ERP-03 · Odoo Customisation",
+     "BIR-01 · BIR E-invoicing Readiness",
      8
     ],
     [
-     "ERP-04 · Odoo Integration",
+     "BIR-02 · CAS & CBA Registration Support",
      9
     ],
     [
-     "ERP-05 · Odoo CRM Customisation",
+     "BIR-03 · BIR Forms & Withholding in Odoo",
      10
     ],
     [
-     "ERP-06 · Odoo Training",
+     "BIR-04 · BIR Audit Readiness",
      11
     ],
     [
-     "ERP-07 · Odoo Support & Upgrades",
+     "The BIR rules and what Odoo covers",
      12
-    ],
-    [
-     "ERP-08 · Multi-Company ERP for Groups",
-     13
-    ],
-    [
-     "Odoo apps we implement",
-     14
-    ],
-    [
-     "Our implementation method",
-     16
-    ],
-    [
-     "Where Odoo runs",
-     17
     ]
    ]
   },
   {
    "no": "02",
-   "title": "Enterprise AI",
-   "page": 18,
+   "title": "Odoo ERP",
+   "page": 13,
    "sections": [
     [
-     "How our AI stays in control",
+     "ERP-01 · Odoo ERP Implementation",
+     14
+    ],
+    [
+     "ERP-02 · Odoo Consultation & Discovery",
+     15
+    ],
+    [
+     "ERP-03 · Odoo Customisation",
+     16
+    ],
+    [
+     "ERP-04 · Odoo Integration",
+     17
+    ],
+    [
+     "ERP-05 · Odoo CRM Customisation",
+     18
+    ],
+    [
+     "ERP-06 · Odoo Training",
      19
     ],
     [
-     "AI-01 · RAG Knowledge Assistants",
+     "ERP-07 · Odoo Support & Upgrades",
      20
     ],
     [
-     "AI-02 · AI inside Odoo",
+     "ERP-08 · Multi-Company ERP for Groups",
      21
     ],
     [
-     "AI-03 · AI Workflow Automation",
+     "Odoo apps we implement",
      22
     ],
     [
-     "AI-04 · AI Chatbots",
-     23
+     "Our implementation method",
+     24
+    ],
+    [
+     "Where Odoo runs",
+     25
     ]
    ]
   },
   {
    "no": "03",
-   "title": "Websites & Marketing",
-   "page": 24,
+   "title": "Enterprise AI",
+   "page": 26,
    "sections": [
     [
-     "MKT-01 · Web Design & Development",
-     25
-    ],
-    [
-     "MKT-02 · Social Media Management",
-     26
-    ],
-    [
-     "MKT-03 · Graphic Design & Brand Assets",
+     "How our AI stays in control",
      27
     ],
     [
-     "Website design with your Odoo",
+     "AI-01 · RAG Knowledge Assistants",
      28
+    ],
+    [
+     "AI-02 · AI inside Odoo",
+     29
+    ],
+    [
+     "AI-03 · AI Workflow Automation",
+     30
+    ],
+    [
+     "AI-04 · AI Chatbots",
+     31
     ]
    ]
   },
   {
    "no": "04",
-   "title": "Industries & reference",
-   "page": 29,
+   "title": "Websites & Marketing",
+   "page": 32,
    "sections": [
     [
-     "Odoo by industry",
-     29
-    ],
-    [
-     "Odoo by industry (continued)",
-     30
-    ],
-    [
-     "Retail: modules and rollout",
-     31
-    ],
-    [
-     "Food & beverage: modules and rollout",
+     "MKT-01 · Web Design & Development",
      33
     ],
     [
-     "Manufacturing: modules and rollout",
+     "MKT-02 · Social Media Management",
+     34
+    ],
+    [
+     "MKT-03 · Graphic Design & Brand Assets",
      35
     ],
     [
-     "Ecommerce: modules and rollout",
+     "Website design with your Odoo",
+     36
+    ]
+   ]
+  },
+  {
+   "no": "05",
+   "title": "Industries & reference",
+   "page": 37,
+   "sections": [
+    [
+     "Odoo by industry",
      37
     ],
     [
-     "Construction: modules and rollout",
+     "Odoo by industry (continued)",
+     38
+    ],
+    [
+     "Retail: modules and rollout",
      39
     ],
     [
-     "Clinics & healthcare: modules and rollout",
+     "Food & beverage: modules and rollout",
      41
     ],
     [
-     "Travel & tours: modules and rollout",
+     "Manufacturing: modules and rollout",
      43
     ],
     [
-     "Health & wellness: modules and rollout",
+     "Ecommerce: modules and rollout",
      45
     ],
     [
-     "Localisation: SG, PH, VN",
+     "Construction: modules and rollout",
      47
     ],
     [
+     "Clinics & healthcare: modules and rollout",
+     49
+    ],
+    [
+     "Travel & tours: modules and rollout",
+     51
+    ],
+    [
+     "Health & wellness: modules and rollout",
+     53
+    ],
+    [
+     "Localisation: SG, PH, VN",
+     55
+    ],
+    [
      "Where we work",
-     48
+     56
     ],
     [
      "How to start",
-     49
+     57
     ]
    ]
   }

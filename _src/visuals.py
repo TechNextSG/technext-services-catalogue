@@ -322,5 +322,92 @@ def brand():
     out.append('<div style="font:500 6pt/1.4 var(--fb);color:#62627A;margin-top:2mm">Plus PDFs for sharing. You own every file delivered.</div></div>')
     return "".join(out) + '<span class="sample" style="left:88mm;top:2.6mm">Fictional brand</span>'
 
-VIS = dict(erp_impl=erp_impl, discovery=discovery, customisation=customisation, integration=integration, crm=crm, training=training, support=support,
+# ------------------------------------------------------------------ BIR
+CAP = "font:700 6pt/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:#62627A"
+
+def tick(on=True):
+    return (f'<span style="width:3.6mm;height:3.6mm;border-radius:1mm;flex:none;display:inline-flex;align-items:center;justify-content:center;'
+            f'background:{"#137A4A" if on else "#fff"};border:.3mm solid {"#137A4A" if on else "#B9C6E2"};color:#fff;font:800 5pt/1 var(--fb)">{"&#10003;" if on else ""}</span>')
+
+def bir_einv():
+    lines_ = [("Service retainer, October", "1", "&#8369; 80,000.00"), ("Implementation hours", "12", "&#8369; 42,000.00")]
+    out = ['<div class="win" style="left:6mm;top:7mm;width:86mm;height:70mm"><div class="bar odoo"><i></i><i></i><i></i><span style="margin-left:2mm">Accounting · Customer invoice</span></div>'
+           '<div style="padding:3mm 3.6mm"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="h4" style="font-size:9pt">INV/2026/00184</div>'
+           '<div style="font:500 6pt/1.4 var(--fb);color:#62627A;margin-top:.8mm">Sample Trading Corp. · Head office · Branch 00000</div></div><span class="tag ok">Accepted by EIS</span></div>'
+           f'<div style="display:grid;grid-template-columns:1fr 8mm 22mm;gap:2mm;margin-top:3.4mm;padding:1.4mm 0;border-bottom:.25mm solid #E7E4E9;{CAP};font-size:5.2pt"><span>ITEM</span><span>QTY</span><span style="text-align:right">AMOUNT</span></div>']
+    for t, q, a in lines_:
+        out.append(f'<div style="display:grid;grid-template-columns:1fr 8mm 22mm;gap:2mm;padding:2.2mm 0;border-bottom:.25mm solid #F0EEF2;font:500 6.4pt/1.3 var(--fb);color:#1F1F3D"><span>{t}</span><span>{q}</span><span style="text-align:right">{a}</span></div>')
+    out.append('<div style="display:flex;justify-content:space-between;padding:2.4mm 0;font:800 7.4pt/1 var(--fd);color:#1F1F3D"><span>Total (VAT inclusive)</span><span>&#8369; 122,000.00</span></div>'
+               '<div style="display:flex;gap:1.6mm;flex-wrap:wrap;margin-top:1.4mm"><span class="tag bl">PTI on file</span><span class="tag bl">JSON sent to EIS</span><span class="tag am">No edits after issue</span></div>'
+               '<div style="margin-top:3mm;padding:2mm 2.6mm;border-radius:1.6mm;background:#FAF9FB;font:500 6pt/1.4 var(--fb);color:#62627A">Correction? A credit note for a decrease, a new e-invoice for an increase.</div></div></div>')
+    st = [("Draft", "Entered in Odoo", "#3167CA"), ("Validated", "Posted, JSON built", "#3167CA"), ("Sent to EIS", "Transmitted to the BIR", "#3167CA"), ("Accepted", "Locked: no edits after", "#0F2350")]
+    out.append(f'<div style="position:absolute;left:100mm;top:7mm;width:70mm"><div style="{CAP};color:#1E4691;margin-bottom:3mm">From draft to the BIR</div>')
+    for i, (t, s, c) in enumerate(st):
+        out.append(f'<div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2.2mm"><div style="width:6mm;height:6mm;border-radius:50%;background:{c};color:#fff;font:800 6.4pt/6mm var(--fd);text-align:center;flex:none">{i + 1}</div>'
+                   f'<div style="background:#fff;border-radius:2mm;padding:1.8mm 2.6mm;flex:1;box-shadow:0 5mm 10mm -8mm rgba(31,31,61,.3)"><div class="h4" style="font-size:7.6pt">{t}</div><div style="font:500 6pt/1.3 var(--fb);color:#62627A;margin-top:.5mm">{s}</div></div></div>')
+    out.append('<div style="margin-top:1mm;background:#0F2350;border-radius:2mm;padding:2.2mm 3mm;display:flex;justify-content:space-between;align-items:center">'
+               '<span style="font:700 5.6pt/1 var(--fb);letter-spacing:.14em;color:#9DB3DD">DEADLINE</span><span style="font:800 9pt/1 var(--fd);color:#fff">31 Dec 2026</span></div></div>')
+    return "".join(out) + sample(72, 3)
+
+def bir_cas():
+    flow = [("Set up Odoo", "Books, invoices", ""), ("Annex B check", "RMC 5-2021", ""), ("Build the pack", "From your Odoo", ""),
+            ("File at RDO", "Your business", ""), ("AC issued", "3 working days", ""), ("ORUS", "Every year", "")]
+    out, paths = [f'<div style="position:absolute;left:6mm;top:6mm;{CAP}">Registering Odoo as your CAS or CBA</div>'], []
+    for i, (t, s, ic) in enumerate(flow):
+        x = 6 + i * 27.6
+        cls = "dark" if i == 4 else ("blue" if i == 0 else "")
+        num = f'<span style="width:5.4mm;height:5.4mm;border-radius:50%;flex:none;background:{"#fff" if cls else "#EAF0FB"};color:#1E4691;font:800 6pt/5.4mm var(--fd);text-align:center">{i + 1}</span>'
+        out.append(node(x, 11, t, s, ic or num, cls, w=24.6, extra="height:15mm;padding:2mm 2.2mm;font-size:6.8pt"))
+        if i < 5:
+            paths.append(f"M{x + 24.8} 18.5 L{x + 27.4} 18.5")
+    checks = [("Audit trail of all activity, printable and protected", 1), ("Posted entries voided, not modified", 1), ("System-controlled invoice numbering", 1),
+              ("Exports of books in CSV or DAT", 1), ("2306, 2307 and 2316 from the system", 1), ("Backups kept for ten years", 0)]
+    out.append('<div class="win" style="left:6mm;top:33mm;width:96mm;height:46mm"><div class="bar"><i></i><i></i><i></i><span style="margin-left:2mm">Requirements check · before you apply</span></div><div style="padding:2mm 3mm">')
+    for t, on in checks:
+        out.append(f'<div style="display:flex;gap:2.2mm;align-items:center;padding:1.15mm 0;font:500 6.2pt/1.25 var(--fb);color:#1F1F3D">{tick(on)}<span>{t}</span>'
+                   f'{"" if on else "<span class=\"tag am\" style=\"margin-left:auto\">Hosting decides</span>"}</div>')
+    out.append('</div></div>')
+    pack = ["Sworn statement and system description", "Sample invoices and documents", "Sample books and reports", "Printed audit trail", "Signed requirements checklist"]
+    out.append('<div class="win" style="left:108mm;top:33mm;width:62mm;height:46mm"><div class="bar odoo"><i></i><i></i><i></i><span style="margin-left:2mm">Application pack</span></div><div style="padding:2.4mm 3mm">')
+    out += [f'<div style="display:flex;gap:2mm;align-items:center;padding:1.3mm 0;border-bottom:.25mm solid #F0EEF2;font:500 6.1pt/1.25 var(--fb);color:#1F1F3D">'
+            f'<span style="font:800 6pt/1 var(--fd);color:#3167CA;width:3mm">{i + 1}</span>{t}</div>' for i, t in enumerate(pack)]
+    out.append('<div style="font:500 5.6pt/1.35 var(--fb);color:#62627A;margin-top:2mm">Cloud set-up: plus a joint sworn statement with the provider.</div></div></div>')
+    return wires(paths) + "".join(out) + sample(146, 5)
+
+def bir_forms():
+    src = [("purchase", "Vendor bills", "Withholding with ATC"), ("account", "Customer invoices", "Sales and VAT"), ("hr_payroll", "Payroll runs", "Compensation tax")]
+    out, paths = [f'<div style="position:absolute;left:6mm;top:6mm;{CAP}">One set of entries</div>'], []
+    for i, (ic, t, s) in enumerate(src):
+        y = 12 + i * 22
+        out.append(node(6, y, t, s, ic, w=46, extra="height:16mm"))
+        paths.append(f"M52.5 {y + 8} C60 {y + 8} 60 42 66 42")
+    rows = [("2307 / 2306", "Per payee, per quarter", "Generated", "ok"), ("SLSP", "1,284 lines · DAT", "Exported", "ok"), ("SAWT", "52 certificates · DAT", "Exported", "ok"),
+            ("QAP", "38 payees · DAT", "Validating", "am"), ("2550Q", "Q3 VAT summary", "Draft ready", "bl"), ("1601-C", "September payroll", "Ready", "bl"), ("2316 · 1604-C", "Yearly, Alphalist DAT", "Planned", "pl")]
+    out.append('<div class="win" style="left:66mm;top:6mm;width:104mm;height:73mm"><div class="bar odoo"><i></i><i></i><i></i><span style="margin-left:2mm">Accounting · BIR reports</span></div>'
+               f'<div style="padding:1.6mm 3mm"><div style="display:grid;grid-template-columns:22mm 1fr 18mm;gap:2mm;padding:1.6mm 0;border-bottom:.25mm solid #E7E4E9;{CAP};font-size:5.2pt"><span>FORM</span><span>FROM YOUR ENTRIES</span><span>STATUS</span></div>')
+    for f, d, s, c in rows:
+        out.append(f'<div style="display:grid;grid-template-columns:22mm 1fr 18mm;gap:2mm;align-items:center;padding:2.05mm 0;border-bottom:.25mm solid #F0EEF2;font:500 6.4pt/1.25 var(--fb);color:#1F1F3D">'
+                   f'<b style="font:700 6.8pt/1 var(--fd)">{f}</b><span style="color:#62627A">{d}</span><span class="tag {c}">{s}</span></div>')
+    out.append('</div></div>')
+    return wires(paths) + "".join(out) + sample(146, 1.2)
+
+def bir_audit():
+    out = [f'<div style="position:absolute;left:6mm;top:6mm;{CAP}">eLA document request · 10 calendar days</div>']
+    out.append('<div style="position:absolute;left:6mm;top:12mm;width:80mm;height:6mm;display:grid;grid-template-columns:repeat(10,1fr);gap:.8mm">'
+               + "".join(f'<div style="border-radius:1mm;background:{"#3167CA" if d < 3 else "#DDE7F8"};font:700 5pt/6mm var(--fb);color:{"#fff" if d < 3 else "#1E4691"};text-align:center">{d + 1}</div>' for d in range(10)) + '</div>')
+    req = ["Returns and proof of payment", "Registered books and general ledger", "Invoices, bills and supporting documents", "SLSP, 2307s and alphalists", "Audited financial statements"]
+    out.append('<div class="win" style="left:6mm;top:23mm;width:80mm;height:56mm"><div class="bar"><i></i><i></i><i></i><span style="margin-left:2mm">Request checklist · Day 3</span></div><div style="padding:2.4mm 3mm">')
+    out += [f'<div style="display:flex;gap:2.2mm;align-items:center;padding:1.7mm 0;border-bottom:.25mm solid #F0EEF2;font:500 6.3pt/1.25 var(--fb);color:#1F1F3D">{tick()}<span>{t}</span>'
+            f'<span style="margin-left:auto;font:600 5.6pt/1 var(--fb);color:#62627A">Ready</span></div>' for t in req]
+    out.append('<div style="margin-top:2.6mm;font:500 6pt/1.4 var(--fb);color:#62627A">Every item comes from Odoo, with its source document attached.</div></div></div>')
+    trail = [("BILL/2026/0944", "Amount changed by user finance.clerk", "4,200 &#8594; 4,480"), ("INV/2026/00179", "Credit note linked", "Reversal, not an edit"), ("JE/2026/0611", "Change on a posted entry", "Blocked by lock date")]
+    out.append('<div class="win" style="left:92mm;top:6mm;width:78mm;height:46mm"><div class="bar odoo"><i></i><i></i><i></i><span style="margin-left:2mm">Accounting · Audit trail</span></div><div style="padding:1.6mm 3mm">')
+    out += [f'<div style="padding:2mm 0;border-bottom:.25mm solid #F0EEF2"><div style="display:flex;justify-content:space-between;font:700 6.4pt/1.2 var(--fd);color:#1F1F3D"><span>{r}</span><span style="font:500 5.6pt/1.2 var(--fb);color:#62627A">{v}</span></div>'
+            f'<div style="font:500 5.8pt/1.3 var(--fb);color:#62627A;margin-top:.6mm">{t}</div></div>' for r, t, v in trail]
+    out.append('</div></div>')
+    for i, (t, s) in enumerate([("Hash chain", "Inalterability check passed"), ("Hard lock", "Up to 30 Sep 2026")]):
+        out.append(node(92 + i * 40, 57, t, s, '<span style="width:5mm;height:5mm;border-radius:50%;flex:none;background:#E3F4EA;color:#137A4A;font:800 6pt/5mm var(--fb);text-align:center">&#10003;</span>', w=38, extra="height:14mm"))
+    return "".join(out) + sample(146, 1.2)
+
+VIS = dict(bir_einv=bir_einv, bir_cas=bir_cas, bir_forms=bir_forms, bir_audit=bir_audit, erp_impl=erp_impl,discovery=discovery, customisation=customisation, integration=integration, crm=crm, training=training, support=support,
            enterprise=enterprise, rag=rag, ai_odoo=ai_odoo, automation=automation, chatbot=chatbot, website=website, social=social, brand=brand)
