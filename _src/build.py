@@ -46,7 +46,7 @@ def cover(n):
             '<div class="eyebrow" style="color:#6FA0F5">BIR Compliance · Odoo ERP · Enterprise AI · Websites</div>'
             '<div style="font:800 54pt/.98 var(--fd);color:#fff;letter-spacing:-.04em;margin-top:6mm">Services<br>Catalogue</div>'
             '<div style="width:22mm;height:1.2mm;background:#6FA0F5;margin:8mm 0 7mm"></div>'
-            '<div style="font:400 12pt/1.5 var(--fb);color:#DDE7F8;max-width:108mm">Your trusted expert adviser for ERP and compliance. Nineteen services across four practices, led by BIR compliance handled in your Odoo. You don\'t need to hire your own team.</div>'
+            '<div style="font:400 12pt/1.5 var(--fb);color:#DDE7F8;max-width:108mm">Your trusted expert adviser for ERP and compliance. Nineteen services across four practices, led by BIR requirements, set up in your Odoo. You don\'t need to hire your own team.</div>'
             '<a href="#bir-einv" style="display:inline-flex;align-items:center;gap:3mm;margin-top:7mm;background:#FFF4DC;border-radius:99px;padding:2.2mm 4mm 2.2mm 3mm">'
             '<span style="font:800 6pt/1 var(--fb);letter-spacing:.14em;color:#A96B00">BIR E-INVOICING DEADLINE</span><span style="font:800 9pt/1 var(--fd);color:#0F2350">31 Dec 2026</span></a></div>'
             f'<div style="position:absolute;left:136mm;right:17mm;top:62mm"><div style="font:700 6pt/1 var(--fb);letter-spacing:.18em;color:#9DB3DD;margin-bottom:2.4mm">IN THIS CATALOGUE</div>{idx}</div>'
@@ -59,10 +59,10 @@ def cover(n):
 def about(n):
     return f'''<div class="ct">
 <div class="eyebrow b">About TechNext</div>
-<div class="h1" style="margin-top:4mm;max-width:156mm">Your trusted expert adviser for <span class="mk">ERP and BIR compliance.</span></div>
+<div class="h1" style="margin-top:4mm;max-width:156mm">Your trusted expert adviser for <span class="mk">ERP and compliance.</span></div>
 <div style="display:grid;grid-template-columns:1.25fr 1fr;gap:10mm;margin-top:8mm">
  <div>
-  <p class="lead">TechNext Pte. Ltd. is a Singapore-based Odoo Ready Partner. For Philippine companies we lead with BIR compliance: e-invoicing, CAS or CBA books, 2307s and alphalists, set up in Odoo by our own experts. We also implement Odoo ERP end to end, build enterprise AI, and run websites and brand design.</p>
+  <p class="lead">TechNext Pte. Ltd. is a Singapore-based Odoo Ready Partner. For Philippine companies we lead with Odoo, set up by our own experts for BIR requirements: e-invoicing planning, CAS or CBA books, 2307s and alphalists. We also implement Odoo ERP end to end, build enterprise AI, and run websites and brand design.</p>
   <p style="margin-top:4mm;font-size:9pt;line-height:1.6">Sales, discovery and on-site work run from our Singapore headquarters. Odoo configuration, custom modules and integrations are built at our main development and consulting hub in Taguig City, Metro Manila, and our AI engineers in Ho Chi Minh City join whenever AI is in scope. One project, one team, and the same people after go-live.</p>
  </div>
  <div class="card w" style="padding:6mm">
@@ -90,7 +90,7 @@ def contents(n, pmap):
         rows = "".join(f'<a href="#{s["id"]}" style="display:grid;grid-template-columns:16mm 1fr 10mm;align-items:baseline;padding:2.2mm 0;border-bottom:.25mm solid var(--line)">'
                        f'<span style="font:700 6.4pt/1 var(--fb);letter-spacing:.1em;color:var(--blue)">{s["code"]}</span><span style="font:600 8.6pt/1.3 var(--fb);color:var(--ink)">{s["name"]}</span>'
                        f'<span style="text-align:right;font:700 8.6pt/1 var(--fd);color:var(--ink)">{pmap[s["id"]]:02d}</span></a>' for s in S if s["p"] == p["id"])
-        extra = {"bir": [("bir-pains", "Where BIR compliance hurts"), ("bir-check", "BIR readiness check"), ("bir-rules", "The BIR rules and what Odoo covers")],
+        extra = {"bir": [("bir-pains", "Where BIR compliance hurts"), ("bir-check", "BIR self-check"), ("bir-rules", "The BIR rules and what Odoo covers")],
                  "erp": [("odoo-apps", "Odoo apps we implement"), ("method", "Our implementation method"), ("hosting", "Where Odoo runs")],
                  "ai": [("ai-principles", "How our AI stays in control")], "mkt": [("offer", "Website design with your Odoo")]}[p["id"]]
         rows += "".join(f'<a href="#{a}" style="display:grid;grid-template-columns:16mm 1fr 10mm;align-items:baseline;padding:2.2mm 0;border-bottom:.25mm solid var(--line)">'
@@ -248,13 +248,13 @@ def offer(n):
             "Setting up the Website app in your Odoo database", "Contact form, mobile layout and basic SEO", "One hand-over call to show your team how to edit it"]
     pay = ["Your Odoo subscription, paid to Odoo at Odoo's price", "More Odoo apps (CRM, invoicing, inventory, HR) if you add them",
            "Your domain name, if you don't have one yet", "Extra pages, an online shop or support, only if you ask"]
-    steps = [("Day 1", "Tell us", "Send the form. We reply within one working day and book a 20-minute call about your business and the style you like."),
-             ("Day 2–3", "We build it", "We design your website and set it up in your Odoo. You review it and ask for changes."),
+    steps = [("Step 1", "Tell us", "Send the form. We reply within one working day and book a 20-minute call about your business and the style you like."),
+             ("Step 2", "We build it", "On a timeline agreed with you before we start, we design your website in your Odoo. You review it."),
              ("When you're ready", "Grow on the same system", "Add CRM, invoicing or inventory later. No moving data, no second system.")]
     return f'''<div class="ct" id="offer">
 <div class="eyebrow b">Website design with your Odoo</div>
 <div class="h1" style="margin-top:4mm;max-width:156mm">We design your website on Odoo. <span class="mk">Our work is on us.</span></div>
-<p class="lead" style="margin-top:4mm;max-width:156mm">Our designers build a full multi-page website around your brand and set it up in your Odoo at no charge. It runs on your own Odoo subscription, ready for more apps, and can be live in as little as three days.</p>
+<p class="lead" style="margin-top:4mm;max-width:156mm">Our designers build a full multi-page website around your brand and set it up in your Odoo at no charge. It runs on your own Odoo subscription, ready for more apps, on a timeline agreed with you before we start.</p>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:8mm">
  <div class="card" style="padding:6mm;border:.5mm solid var(--blue)"><div class="eyebrow b">From TechNext · our work</div><ul class="inc" style="margin-top:4mm">{"".join(f"<li>{x}</li>" for x in free)}</ul></div>
  <div class="card" style="padding:6mm"><div class="eyebrow">What you pay for</div><ul class="inc" style="margin-top:4mm">{"".join(f"<li>{x}</li>" for x in pay)}</ul>
@@ -271,14 +271,14 @@ def offer(n):
 </div>'''
 
 def bir_pains(n):
-    pains = [("Invoices that can't be sent", "A printed or emailed PDF. If the system can't transmit sales data to the BIR, it needs work before 31 December 2026.", "Invoices validated in Odoo and sent to the EIS, with credit-note and downtime flows ready", "BIR-01"),
-             ("2307s typed by hand", "Certificates re-typed and chased every quarter.", "2306 and 2307 PDFs generated on vendor bills and sent with the payment", "BIR-03"),
+    pains = [("Invoices that can't be sent", "A printed or emailed PDF. If the system can't transmit sales data to the BIR, it needs work before 31 December 2026.", "Invoice flows set up in Odoo; how invoice data reaches the EIS is scoped with you", "BIR-01"),
+             ("2307s typed by hand", "Certificates re-typed and chased every quarter.", "2306 and 2307 PDFs generated on vendor bills and, if requested, sent with the payment", "BIR-03"),
              ("Month-end in Excel", "SLSP, SAWT and QAP rebuilt from spreadsheets.", "DAT exports from the same entries as your books", "BIR-03"),
              ("Missing customer 2307s", "A missing certificate is a credit you can't claim.", "Each received 2307 attached to its invoice, with the gaps listed for follow-up", "BIR-03"),
              ("CAS paperwork", "A system description and sample outputs written from scratch.", "The application pack printed from the Odoo you will actually use", "BIR-02"),
              ("Upgrades and the registration", "A major change adopted without an updated registration leaves the registration without effect from that date.", "The registration update planned alongside each Odoo upgrade", "BIR-02"),
              ("Branches doing it differently", "Each branch with its own spreadsheet and invoice habits.", "One database: each branch its own journal and series, one consolidated 2550Q", "BIR-01"),
-             ("Digging for an audit", "Ten days to answer an eLA request, with records in five places.", "Audit trail, locked periods and attachments: a few reports away", "BIR-04")]
+             ("Digging for an audit", "Ten days to answer an eLA request, with records in five places.", "Audit trail, locked periods and attachments: easier to find and export", "BIR-04")]
     ids = {"BIR-01": "bir-einv", "BIR-02": "bir-cas", "BIR-03": "bir-forms", "BIR-04": "bir-audit"}
     head = '<div style="display:grid;grid-template-columns:46mm 1fr 1fr;gap:5mm;padding:1.8mm 0;border-bottom:.5mm solid var(--ink)"><span class="eyebrow" style="color:var(--ink)">The pain</span><span class="eyebrow">Today</span><span class="eyebrow b">In Odoo, set up by TechNext</span></div>'
     rows = "".join(f'<div style="display:grid;grid-template-columns:46mm 1fr 1fr;gap:5mm;padding:2.9mm 0;border-bottom:.25mm solid var(--line);align-items:start">'
@@ -290,7 +290,7 @@ def bir_pains(n):
                  f'<div style="font:500 6.8pt/1.35 var(--fb);color:var(--muted);margin-top:.8mm">{d}</div></div>' for t, d, s in who)
     return f'''<div class="ct" id="bir-pains"><div class="eyebrow b">BIR compliance · Where it hurts</div>
 <div class="h1" style="margin-top:4mm;max-width:160mm">What finance teams tell us <span class="mk">before an Odoo project.</span></div>
-<p class="lead" style="margin-top:4mm;max-width:160mm">Eight BIR pains we hear in almost every Philippine discovery call, and what changes once the BIR work lives in one system. Each row points to the service that solves it.</p>
+<p class="lead" style="margin-top:4mm;max-width:160mm">Eight BIR pains we hear in almost every Philippine discovery call, and what changes once the BIR work lives in one system. Each row points to the service that addresses it.</p>
 <div style="margin-top:6mm">{head}{rows}</div>
 <div class="card w" style="margin-top:auto;padding:5mm"><div style="display:flex;align-items:baseline;justify-content:space-between"><div class="h3">Who must e-invoice by 31 December 2026</div><span style="font:600 6.8pt/1 var(--fb);color:var(--muted)">RR 26-2025 · RMC 98-2026</span></div>
 <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:3mm;margin-top:3.4mm">{wc}</div>
@@ -305,15 +305,15 @@ def bir_check(n):
     cards = "".join(f'<div class="card" style="padding:5mm;display:flex;flex-direction:column;gap:2.6mm"><div style="display:flex;align-items:center;justify-content:space-between"><div class="h3">{t}</div><a href="#{a}" class="ref"><i></i>{c}</a></div>'
                     + "".join(f'<div style="display:flex;gap:2.8mm;align-items:flex-start;padding:1.5mm 0;border-top:.25mm solid var(--line);font:500 8.6pt/1.4 var(--fb);color:var(--ink)">{box}<span>{q}</span></div>' for q in qs) + '</div>' for t, a, c, qs in groups)
     path = [("Confirm your group", "With your accountant: covered now, later, or exempt"), ("Map your invoice flows", "Invoices, credit notes, branches, anything issued outside your system"),
-            ("Set up the localisation", "Taxes, withholding, BIR reports and invoice layouts, tested on your data"), ("Build the BIR link", "How your Odoo version and hosting send invoice data, tested on a copy"),
-            ("Support your PTI", "Process flow and sample invoices taken straight from your Odoo"), ("Go live and stay on", "Downtime and correction flows ready on day one, then support")]
+            ("Set up the localisation", "Taxes, withholding, BIR reports and invoice layouts, tested on your data"), ("Plan the EIS route", "What your Odoo version and hosting would need, quoted separately"),
+            ("Prepare PTI papers", "You apply; we prepare the process flow and sample invoices from your Odoo"), ("Go live and stay on", "Downtime and correction flows set up before go-live, then support")]
     steps = "".join(f'<div style="background:#fff;border-radius:2.4mm;padding:3.4mm"><div style="font:800 12pt/1 var(--fd);color:var(--blue)">{i + 1}</div><div class="h4" style="margin-top:1.6mm;font-size:8pt">{t}</div>'
                     f'<div style="font:500 6.8pt/1.35 var(--fb);color:var(--muted);margin-top:1mm">{d}</div></div>' for i, (t, d) in enumerate(path))
-    return f'''<div class="ct" id="bir-check"><div class="eyebrow b">BIR compliance · Readiness check</div>
+    return f'''<div class="ct" id="bir-check"><div class="eyebrow b">BIR compliance · Self-check</div>
 <div class="h1" style="margin-top:4mm;max-width:160mm">Twelve questions. <span class="mk">Tick what is true today.</span></div>
 <p class="lead" style="margin-top:4mm;max-width:160mm">Three or more boxes left empty, or "not sure"? Bring this page to a discovery call. An adviser will say what Odoo covers, what it takes, and what to do first before 31 December 2026.</p>
 <div style="display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:5mm;margin-top:7mm;flex:1">{cards}</div>
-<div class="card w" style="margin-top:7mm;padding:5mm"><div class="h3">From "are we covered?" to e-invoicing in Odoo</div>
+<div class="card w" style="margin-top:7mm;padding:5mm"><div class="h3">From "are we covered?" to an e-invoicing plan for your Odoo</div>
 <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:2.6mm;margin-top:3.4mm">{steps}</div></div></div>'''
 
 def bir_rules(n):
@@ -325,22 +325,22 @@ def bir_rules(n):
              ("RMC 98-2026", "22 Sep 2026", "Working rules: PTI first, EIS Certification within six months, no edits after issue, every branch"),
              ("RMC 110-2026", "12 Oct 2026", "Accreditation rules for e-invoicing service providers"),
              ("RR 6-2026", "In force 16 Oct 2026", "Creditable withholding tax shown as a separate item on invoices"),
-             ("RMO 22-2026", "24 Aug 2026", "Audits need a valid eLA, TVN or Mission Order; 10 calendar days to submit documents")]
+             ("RMO 22-2026", "24 Aug 2026", "Audits need a valid eLA, TVN or Mission Order; documents due in 10 days")]
     tb = ('<table class="tbl"><tr><th style="width:38mm">Issuance</th><th style="width:28mm">Date</th><th>What it means for your system</th></tr>'
           + "".join(f'<tr><td><b>{a}</b></td><td>{b}</td><td>{c}</td></tr>' for a, b, c in rules) + '</table>')
-    odoo = ["Invoices set up for BIR and CAS requirements, and a Book of Accounts for CAS and CBA", "BIR 2306 and 2307 certificates as PDFs, generated on vendor bills",
-            "SLSP, SAWT and QAP with DAT exports, and the 2550Q VAT summary", "Payroll with the 1601-C, 2316 and 1604-C"]
-    tn = ["The connection to the BIR's EIS, which Odoo's release notes do not cover", "Invoice layouts and branch flows checked against the guidelines",
-          "Credit-note and manual-invoice catch-up set up before go-live", "Sample outputs and process flow for your CAS and PTI applications"]
+    odoo = ["Invoice layouts for BIR and CAS requirements, and a Book of Accounts for CAS and CBA", "BIR 2306 and 2307 certificates as PDFs, generated on vendor bills",
+            "SLSP, SAWT and QAP with DAT exports, the 2550Q, 1600-VT and 2551Q", "Basic PH payroll: 1601-C items, 2316, 1604-C worksheets"]
+    tn = ["No EIS connection: Odoo has none built in and TechNext has not built one; any connection is quoted separately", "Invoice layouts and branch flows checked against the guidelines",
+          "Credit-note and manual-invoice catch-up set up before go-live", "Sample outputs and process flow for the CAS and PTI applications you file"]
     return f'''<div class="ct" id="bir-rules"><div class="eyebrow b">BIR compliance · The rules behind it</div>
 <div class="h1" style="margin-top:4mm;max-width:160mm">The issuances that shape <span class="mk">your Odoo setup.</span></div>
-<p class="lead" style="margin-top:4mm;max-width:160mm">The BIR registers your business and your system, not a software brand. These are the rules we set Odoo up against, and the split between what Odoo does and what we add.</p>
+<p class="lead" style="margin-top:4mm;max-width:160mm">The BIR registers your business and your system, not a software brand.</p>
 <div style="margin-top:6mm">{tb}</div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:7mm">
  <div class="card" style="padding:5mm"><div style="display:flex;align-items:center;gap:2.4mm">{oi("account", 6.5)}<div class="h3">What Odoo 20 already does</div></div><ul class="inc" style="margin-top:3mm">{"".join(f"<li>{x}</li>" for x in odoo)}</ul></div>
  <div class="card" style="padding:5mm;border:.5mm solid var(--blue)"><div style="display:flex;align-items:center;gap:2.4mm"><img src="assets/logo/technext-horizontal-blue.png" style="height:5mm" alt="TechNext"><div class="h3">adds</div></div><ul class="inc" style="margin-top:3mm">{"".join(f"<li>{x}</li>" for x in tn)}</ul></div>
 </div>
-<div class="card w" style="margin-top:auto;padding:4.4mm 5mm"><div class="h4">About "BIR-accredited" claims</div><p style="font-size:7.6pt;margin-top:1.4mm">In its public advisory of 14 September 2026, the BIR said it has not accredited or endorsed any e-invoicing service provider. We say Odoo is set up for BIR requirements; the CAS registration and the PTI are issued to your business for the system you register.</p></div>
+<div class="card w" style="margin-top:auto;padding:4.4mm 5mm"><div class="h4">About "BIR-accredited" claims</div><p style="font-size:7.6pt;margin-top:1.4mm">In its public advisory of 14 September 2026, the BIR said it has not accredited or endorsed any e-invoicing service provider. We say Odoo is set up for BIR requirements; the CAS registration and the PTI are issued to your business. <b>TechNext is an Odoo Ready Partner.</b> We are not affiliated with, accredited by or acting for the BIR or any government agency, and we do not file or register on your behalf.</p></div>
 <div class="small" style="margin-top:3mm">BIR issuances as available on 21 October 2026, summarised on technext.asia (bir-e-invoicing and the BIR guides). General guidance, not tax advice: confirm with your accountant or RDO before acting.</div></div>'''
 
 PMAP = {}
@@ -421,8 +421,8 @@ def ind_sheet_b(n, name):
 </div>'''
 
 def local(n):
-    cols = [("Philippines", "PH", ["Set up for BIR requirements: CAS and CBA books and invoices (BIR-01 to BIR-04)", "BIR 2306 and 2307 certificates generated from vendor bills", "SLSP, SAWT and QAP DAT exports, 2550Q, 1600-VT and 2551Q", "Payroll with the 1601-C, 2316 and 1604-C; SSS and Pag-IBIG loan deductions", "EIS link built and tested by TechNext, before the 31 Dec 2026 deadline"]),
-            ("Singapore", "SG", ["GST and IRAS reporting under Odoo 20 localisation", "SFRS-aligned accounting", "Ready for the GST InvoiceNow requirement, phased from 1 Nov 2025 to 1 Apr 2031", "On-site work from our Waterloo Street HQ"]),
+    cols = [("Philippines", "PH", ["Set up for BIR requirements: CAS and CBA books and invoices (BIR-01 to BIR-04)", "BIR 2306 and 2307 certificates generated from vendor bills", "SLSP, SAWT and QAP DAT exports, 2550Q, 1600-VT and 2551Q", "Basic payroll (Odoo 20): 1601-C items, 2316, 1604-C worksheets; SSS and Pag-IBIG loan deductions", "EIS route scoped with you before 31 Dec 2026; Odoo has no built-in EIS connection"]),
+            ("Singapore", "SG", ["GST and IRAS reporting under Odoo 20 localisation", "SFRS-aligned accounting", "Odoo 20 GST refinements toward InvoiceNow (phased 1 Nov 2025 to 1 Apr 2031)", "InvoiceNow through the Access Point you choose; TechNext is not an Access Point", "On-site work from our Waterloo Street HQ"]),
             ("Vietnam", "VN", ["Odoo 20 follows Circular 99 for accounting", "01/GTGT VAT reporting", "SInvoice e-invoicing", "AI engineering hub in Ho Chi Minh City"])]
     c = "".join(f'<div class="card" style="padding:6mm;display:flex;flex-direction:column;gap:3mm"><div style="display:flex;justify-content:space-between;align-items:center"><div class="h2" style="font-size:17pt">{t}</div>'
                 f'<span style="font:800 10pt/1 var(--fd);color:#fff;background:var(--blue);border-radius:1.4mm;padding:1.6mm 2.2mm">{k}</span></div><ul class="inc">{"".join(f"<li>{x}</li>" for x in pts)}</ul></div>' for t, k, pts in cols)
@@ -475,11 +475,11 @@ def start(n):
 <a href="#bir-check" style="margin-top:8mm;display:grid;grid-template-columns:1fr 52mm;gap:8mm;align-items:center;background:linear-gradient(120deg,#0F2350,#1E4691);border-radius:3mm;padding:7mm 8mm">
  <div><div style="font:700 6pt/1 var(--fb);letter-spacing:.16em;color:#9DB3DD">PHILIPPINE COMPANIES · START HERE</div>
  <div style="font:800 17pt/1.15 var(--fd);color:#fff;letter-spacing:-.02em;margin-top:3mm">Covered by BIR e-invoicing? Start before the deadline.</div>
- <p style="font-size:8.4pt;color:#DDE7F8;margin-top:2.6mm">You need a Permit to Issue first, then EIS Certification within six months. Run the twelve-question readiness check on p. {PMAP["bir-check"]:02d} and bring it to your discovery call.</p></div>
+ <p style="font-size:8.4pt;color:#DDE7F8;margin-top:2.6mm">You need a Permit to Issue first, then EIS Certification within six months. Run the twelve-question self-check on p. {PMAP["bir-check"]:02d} and bring it to your discovery call.</p></div>
  <div style="background:#FFF4DC;border-radius:2.4mm;padding:5mm;text-align:center"><div style="font:800 6pt/1 var(--fb);letter-spacing:.14em;color:#A96B00">DEADLINE</div><div style="font:800 20pt/1 var(--fd);color:#0F2350;margin-top:2.4mm">31 Dec 2026</div><div style="font:600 6.6pt/1.3 var(--fb);color:#62627A;margin-top:2mm">RR 26-2025 · RMC 98-2026</div></div>
 </a>
 <div class="card" style="margin-top:auto;padding:6mm;display:grid;grid-template-columns:1fr 1fr;gap:8mm">
- <div><div class="h4">Who replies?</div><p style="font-size:7.8pt;margin-top:1.4mm">The TechNext team, from sales@technext.asia. An adviser who knows the BIR side joins the discovery call.</p></div>
+ <div><div class="h4">Who replies?</div><p style="font-size:7.8pt;margin-top:1.4mm">The TechNext team, from sales@technext.asia. An adviser who sets up Odoo for BIR requirements joins the discovery call.</p></div>
  <div><div class="h4">What do you do with my details?</div><p style="font-size:7.8pt;margin-top:1.4mm">We use them only to reply. See technext.asia/privacy.</p></div>
 </div></div>'''
 
@@ -573,7 +573,7 @@ def main():
 
 def write_bookjson(seq, pmap):
     import json
-    guides = {"bir": [("Where BIR compliance hurts", "bir-pains"), ("BIR readiness check", "bir-check"), ("The BIR rules and what Odoo covers", "bir-rules")],
+    guides = {"bir": [("Where BIR compliance hurts", "bir-pains"), ("BIR self-check", "bir-check"), ("The BIR rules and what Odoo covers", "bir-rules")],
               "erp": [("Odoo apps we implement", "odoo-apps"), ("Our implementation method", "method"), ("Where Odoo runs", "hosting")],
               "ai": [("How our AI stays in control", "ai-principles")], "mkt": [("Website design with your Odoo", "offer")]}
     chapters = []
