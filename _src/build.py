@@ -53,7 +53,7 @@ def cover(n):
             '<div style="position:absolute;left:17mm;right:17mm;bottom:16mm;display:flex;align-items:flex-end;justify-content:space-between">'
             '<div style="display:flex;gap:10mm">' + "".join(
                 f'<div><div style="font:800 18pt/1 var(--fd);color:#fff">{v}</div><div style="font:600 6.4pt/1.3 var(--fb);color:#9DB3DD;margin-top:1.4mm">{k}</div></div>'
-                for v, k in [("10+", "countries served"), ("11+", "enterprise clients"), ("3", "hubs: SG · PH · VN"), ("4", "practices")]) + '</div>'
+                for v, k in [("25+", "countries served"), ("90+", "enterprise clients"), ("3", "hubs: SG · PH · VN"), ("4", "practices")]) + '</div>'
             '<div style="background:#fff;border-radius:2.4mm;padding:2.6mm 3.4mm"><img src="assets/logo/odoo-ready-partner.png" style="height:11mm" alt="Odoo Ready Partner"></div></div></div>')
 
 def about(n):
@@ -76,7 +76,7 @@ def about(n):
  </div>
 </div>
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5mm;margin-top:10mm;padding-top:7mm;border-top:.5mm solid var(--ink)">
- {"".join(f'<div class="stat"><div class="v">{v}</div><div class="k">{k}</div></div>' for v, k in [("10+", "Countries with clients"), ("11+", "Enterprise clients"), ("3", "Hubs in Singapore, the Philippines and Vietnam"), ("31 Dec", "BIR e-invoicing deadline, 2026")])}
+ {"".join(f'<div class="stat"><div class="v">{v}</div><div class="k">{k}</div></div>' for v, k in [("25+", "Countries with clients"), ("90+", "Enterprise clients"), ("3", "Hubs in Singapore, the Philippines and Vietnam"), ("31 Dec", "BIR e-invoicing deadline, 2026")])}
 </div>
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin-top:10mm">
  {"".join(f'<a href="#d-{p["id"]}" class="card" style="display:flex;flex-direction:column;gap:2mm;min-height:52mm{";border:.5mm solid var(--blue)" if p["id"] == "bir" else ""}"><div style="font:800 20pt/1 var(--fd);color:var(--mist)">{p["n"]}</div><div class="h3">{p["name"]}</div><div style="font-size:7.6pt;line-height:1.45">{p["lead"].split(". ")[0].rstrip(".")}.</div></a>' for p in PRACTICES)}
@@ -445,11 +445,11 @@ def offices(n):
                 f'<p style="font-size:8.2pt;margin-top:2.6mm;color:var(--ink)">{a}</p></div><p style="font-size:8.6pt;padding-top:1mm">{d}</p></div>' for i, (t, r, a, d) in enumerate(o))
     return f'''<div class="ct" id="offices"><div class="eyebrow b">Where we work</div>
 <div class="h1" style="margin-top:4mm">Three hubs, <span class="mk">one project team.</span></div>
-<p class="lead" style="margin-top:4mm;max-width:156mm">We work on-site in Singapore and remotely with clients in 10+ countries. Ask us about on-site work at your location.</p>
+<p class="lead" style="margin-top:4mm;max-width:156mm">We work on-site in Singapore and remotely with clients in 25+ countries. Ask us about on-site work at your location.</p>
 <div style="margin-top:8mm;border-top:.5mm solid var(--ink)">{c}</div>
 <div class="card w" style="margin-top:8mm;padding:6mm"><div class="eyebrow" style="color:var(--navy)">How one project moves between hubs</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin-top:4mm"><div style="background:#fff;border-radius:2.4mm;padding:4mm"><div style="font:800 9pt/1 var(--fd);color:var(--blue)">01</div><div class="h4" style="margin-top:2mm">Singapore</div><div style="font-size:7.4pt;margin-top:1.2mm">Discovery workshops, scope and on-site sessions</div></div><div style="background:#fff;border-radius:2.4mm;padding:4mm"><div style="font:800 9pt/1 var(--fd);color:var(--blue)">02</div><div class="h4" style="margin-top:2mm">Taguig City</div><div style="font-size:7.4pt;margin-top:1.2mm">Configuration, custom modules and integrations</div></div><div style="background:#fff;border-radius:2.4mm;padding:4mm"><div style="font:800 9pt/1 var(--fd);color:var(--blue)">03</div><div class="h4" style="margin-top:2mm">Ho Chi Minh City</div><div style="font-size:7.4pt;margin-top:1.2mm">AI features, when AI is in scope</div></div><div style="background:#fff;border-radius:2.4mm;padding:4mm"><div style="font:800 9pt/1 var(--fd);color:var(--blue)">04</div><div class="h4" style="margin-top:2mm">Singapore</div><div style="font-size:7.4pt;margin-top:1.2mm">Go-live, training and support led from HQ</div></div></div></div>
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5mm;margin-top:auto;padding-top:7mm">
- {"".join(f'<div class="stat"><div class="v">{v}</div><div class="k">{k}</div></div>' for v, k in [("10+", "Countries with clients"), ("11+", "Enterprise clients"), ("3", "Hubs across Asia"), ("1", "Team after go-live")])}
+ {"".join(f'<div class="stat"><div class="v">{v}</div><div class="k">{k}</div></div>' for v, k in [("25+", "Countries with clients"), ("90+", "Enterprise clients"), ("3", "Hubs across Asia"), ("1", "Team after go-live")])}
 </div></div>'''
 
 def start(n):
