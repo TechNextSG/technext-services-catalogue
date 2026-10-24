@@ -780,7 +780,7 @@ kbd {
 }
 @media (max-width: 760px) {
   :root { --bar-h: 58px; --dock-h: 108px; --panel-w: 100vw; }
-  .bar { gap: 6px; padding: 0 6px; }
+  .bar { gap: 6px; padding: 0 max(12px, env(safe-area-inset-right, 0px)) 0 max(12px, env(safe-area-inset-left, 0px)); }  /* 24 Oct 2026: buttons were 6px from the screen edge */
   .brand__logo { height: 17px; }
   .crumb { display: none; }
   .bar__tools { margin-left: auto; gap: 0; }
@@ -803,7 +803,7 @@ kbd {
   .stage__spine { display: none; }
   .stage__numeral { font-size: 34vh; }
   .dock {
-    grid-template-columns: auto 1fr auto; grid-template-rows: 40px 1fr; gap: 0 8px; padding: 0 8px 4px;
+    grid-template-columns: auto 1fr auto; grid-template-rows: 40px 1fr; gap: 0 8px; padding: 0 max(12px, env(safe-area-inset-right, 0px)) 4px max(12px, env(safe-area-inset-left, 0px));
     padding-bottom: max(4px, env(safe-area-inset-bottom));
   }
   .rail { grid-column: 1 / -1; grid-row: 1; height: 40px; margin: 0 4px; }
