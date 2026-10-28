@@ -1,4 +1,4 @@
-# Facts only from technext.asia (llms-full.txt, solution pages, /get-started), Oct 2026.
+# Facts only from technext.asia (llms-full.txt, solution pages), Oct 2026. Free website offer ended 28 Oct 2026.
 # Rules: no prices; Odoo is never "free"; "Odoo Ready Partner"; no cyber security; British spelling.
 
 PRACTICES = [

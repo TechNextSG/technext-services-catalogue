@@ -248,26 +248,26 @@ def offer(n):
             "Setting up the Website app in your Odoo database", "Contact form, mobile layout and basic SEO", "One hand-over call to show your team how to edit it"]
     pay = ["Your Odoo subscription, paid to Odoo at Odoo's price", "More Odoo apps (CRM, invoicing, inventory, HR) if you add them",
            "Your domain name, if you don't have one yet", "Extra pages, an online shop or support, only if you ask"]
-    steps = [("Step 1", "Tell us", "Send the form. We reply within one working day and book a 20-minute call about your business and the style you like."),
+    steps = [("Step 1", "Tell us", "Send the form. We reply within one working day, book a 20-minute call about your business and the style you like, then send a written quotation."),
              ("Step 2", "We build it", "On a timeline agreed with you before we start, we design your website in your Odoo. You review it."),
              ("When you're ready", "Grow on the same system", "Add CRM, invoicing or inventory later. No moving data, no second system.")]
     return f'''<div class="ct" id="offer">
 <div class="eyebrow b">Website design with your Odoo</div>
-<div class="h1" style="margin-top:4mm;max-width:156mm">We design your website on Odoo. <span class="mk">Our work is on us.</span></div>
-<p class="lead" style="margin-top:4mm;max-width:156mm">Our designers build a full multi-page website around your brand and set it up in your Odoo at no charge. It runs on your own Odoo subscription, ready for more apps, on a timeline agreed with you before we start.</p>
+<div class="h1" style="margin-top:4mm;max-width:156mm">We design your website on Odoo. <span class="mk">One system with your sales.</span></div>
+<p class="lead" style="margin-top:4mm;max-width:156mm">Our designers build a full multi-page website around your brand and set it up in your Odoo. It runs on your own Odoo subscription, ready for more apps, with the scope, timeline and quotation agreed with you in writing before we start.</p>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:8mm">
- <div class="card" style="padding:6mm;border:.5mm solid var(--blue)"><div class="eyebrow b">From TechNext · our work</div><ul class="inc" style="margin-top:4mm">{"".join(f"<li>{x}</li>" for x in free)}</ul></div>
- <div class="card" style="padding:6mm"><div class="eyebrow">What you pay for</div><ul class="inc" style="margin-top:4mm">{"".join(f"<li>{x}</li>" for x in pay)}</ul>
- <p style="font-size:7.6pt;margin-top:3mm;color:var(--muted)">Every cost is stated in writing before we start.</p></div>
+ <div class="card" style="padding:6mm;border:.5mm solid var(--blue)"><div class="eyebrow b">What we design and set up</div><ul class="inc" style="margin-top:4mm">{"".join(f"<li>{x}</li>" for x in free)}</ul></div>
+ <div class="card" style="padding:6mm"><div class="eyebrow">Also to plan for</div><ul class="inc" style="margin-top:4mm">{"".join(f"<li>{x}</li>" for x in pay)}</ul>
+ <p style="font-size:7.6pt;margin-top:3mm;color:var(--muted)">Our design work and every other cost are quoted in writing before we start.</p></div>
 </div>
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;margin-top:9mm;padding-top:6mm;border-top:.5mm solid var(--ink)">
  {"".join(f'<div><div class="eyebrow b">{d}</div><div class="h3" style="margin-top:2mm">{t}</div><p style="font-size:8pt;margin-top:1.6mm">{x}</p></div>' for d, t, x in steps)}
 </div>
 <div class="card w" style="margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:8mm;padding:6mm">
  <div><div class="h4">Who owns the website and the data?</div><p style="font-size:7.8pt;margin-top:1.4mm">You do. The Odoo subscription and database are in your name, and you can export your data or move to another partner at any time.</p></div>
- <div><div class="h4">I need an online shop or a special feature.</div><p style="font-size:7.8pt;margin-top:1.4mm">Your website design still comes with it. Online shops, bookings or custom features are quoted separately, in writing.</p></div>
+ <div><div class="h4">I need an online shop or a special feature.</div><p style="font-size:7.8pt;margin-top:1.4mm">Tell us in the form. Online shops, bookings or custom features are scoped in the same written quotation.</p></div>
 </div>
-<div class="small" style="margin-top:4mm">Apply at technext.asia/get-started. Odoo itself is not free; your website runs on your own Odoo subscription, which you pay to Odoo.</div>
+<div class="small" style="margin-top:4mm">Ask for a quotation at technext.asia/quotation. Odoo itself is not free; your website runs on your own Odoo subscription, which you pay to Odoo.</div>
 </div>'''
 
 def bir_pains(n):
