@@ -3,7 +3,7 @@ import subprocess, os, tempfile, shutil, json
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 src=open(os.path.join(ROOT,'print.html'),encoding='utf-8').read()
 js='''<script>addEventListener('load',()=>setTimeout(()=>{const r=[];document.querySelectorAll('.page').forEach((pg,i)=>{const b=pg.getBoundingClientRect();
-const box=pg.querySelector('.sv,.ct');if(!box)return;const lim=b.bottom-(box.classList.contains("sv")?18.5:20)*3.7795;let mx=0;box.querySelectorAll('*').forEach(e=>{const q=e.getBoundingClientRect();if(q.height&&q.bottom>mx&&!e.closest('.vis'))mx=q.bottom});
+const box=pg.querySelector('.sv,.ct,.in');if(!box)return;const lim=b.bottom-(box.classList.contains("in")?20:15)*3.7795;let mx=0;box.querySelectorAll('*').forEach(e=>{const q=e.getBoundingClientRect();if(q.height&&q.bottom>mx&&!e.closest('.vis'))mx=q.bottom;if(q.width&&q.right>b.right-(pg.classList.contains('even')?12:10)*3.7795+0.5&&!e.closest('.vis,.tabs'))r.push([i+1,'right',(e.className||e.tagName)+'',Math.round((q.right-b.right)/3.78)])});
 if(mx>lim+0.5)r.push([i+1,Math.round((mx-lim)/3.7795*10)/10]);
 pg.querySelectorAll('.vis').forEach(v=>{const vb=v.getBoundingClientRect();v.querySelectorAll('.win,.node,div[style*="position:absolute"]').forEach(e=>{const q=e.getBoundingClientRect();if(q.bottom>vb.bottom+1||q.right>vb.right+1)r.push([i+1,'vis-clip',e.className||e.textContent.slice(0,20),Math.round((q.bottom-vb.bottom)/3.78)])})})});
 document.body.setAttribute('data-r',JSON.stringify(r))},1500))</script>'''

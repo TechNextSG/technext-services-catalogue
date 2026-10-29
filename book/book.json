@@ -31,223 +31,219 @@
   ],
   [
    "Contents",
-   3
+   4
   ],
   [
    "How we engage",
-   4
+   7
   ]
  ],
  "back": [
   [
    "Back cover · contact",
-   58
+   108
   ]
  ],
  "pageLabels": {
   "1": "Cover",
   "2": "About TechNext",
-  "3": "Contents",
-  "4": "How we engage",
-  "58": "Back cover",
-  "5": "Practice 01 · BIR Compliance",
-  "13": "Practice 02 · Odoo ERP",
-  "26": "Practice 03 · Enterprise AI",
-  "32": "Practice 04 · Websites & Marketing"
+  "4": "Contents",
+  "7": "How we engage",
+  "108": "Back cover",
+  "9": "Practice 01 · BIR Compliance",
+  "24": "Practice 02 · Odoo ERP",
+  "49": "Practice 03 · Enterprise AI",
+  "60": "Practice 04 · Websites & Marketing"
  },
  "chapters": [
   {
    "no": "01",
    "title": "BIR Compliance",
-   "page": 5,
+   "page": 9,
    "sections": [
     [
      "Where BIR compliance hurts",
-     6
-    ],
-    [
-     "BIR self-check",
-     7
-    ],
-    [
-     "BIR-01 · BIR E-invoicing Preparation",
-     8
-    ],
-    [
-     "BIR-02 · CAS & CBA Registration Support",
-     9
-    ],
-    [
-     "BIR-03 · BIR Forms & Withholding in Odoo",
      10
     ],
     [
+     "BIR self-check",
+     12
+    ],
+    [
+     "BIR-01 · BIR E-invoicing Preparation",
+     14
+    ],
+    [
+     "BIR-02 · CAS & CBA Registration Support",
+     16
+    ],
+    [
+     "BIR-03 · BIR Forms & Withholding in Odoo",
+     18
+    ],
+    [
      "BIR-04 · BIR Audit Records",
-     11
+     20
     ],
     [
      "The BIR rules and what Odoo covers",
-     12
+     22
     ]
    ]
   },
   {
    "no": "02",
    "title": "Odoo ERP",
-   "page": 13,
+   "page": 24,
    "sections": [
     [
      "ERP-01 · Odoo ERP Implementation",
-     14
+     25
     ],
     [
      "ERP-02 · Odoo Consultation & Discovery",
-     15
+     27
     ],
     [
      "ERP-03 · Odoo Customisation",
-     16
+     29
     ],
     [
      "ERP-04 · Odoo Integration",
-     17
+     31
     ],
     [
      "ERP-05 · Odoo CRM Customisation",
-     18
+     33
     ],
     [
      "ERP-06 · Odoo Training",
-     19
+     35
     ],
     [
      "ERP-07 · Odoo Support & Upgrades",
-     20
+     37
     ],
     [
      "ERP-08 · Multi-Company ERP for Groups",
-     21
+     39
     ],
     [
      "Odoo apps we implement",
-     22
+     41
     ],
     [
      "Our implementation method",
-     24
+     45
     ],
     [
      "Where Odoo runs",
-     25
+     47
     ]
    ]
   },
   {
    "no": "03",
    "title": "Enterprise AI",
-   "page": 26,
+   "page": 49,
    "sections": [
     [
      "How our AI stays in control",
-     27
+     50
     ],
     [
      "AI-01 · RAG Knowledge Assistants",
-     28
+     52
     ],
     [
      "AI-02 · AI inside Odoo",
-     29
+     54
     ],
     [
      "AI-03 · AI Workflow Automation",
-     30
+     56
     ],
     [
      "AI-04 · AI Chatbots",
-     31
+     58
     ]
    ]
   },
   {
    "no": "04",
    "title": "Websites & Marketing",
-   "page": 32,
+   "page": 60,
    "sections": [
     [
      "MKT-01 · Web Design & Development",
-     33
+     61
     ],
     [
      "MKT-02 · Social Media Management",
-     34
+     63
     ],
     [
      "MKT-03 · Graphic Design & Brand Assets",
-     35
+     65
     ],
     [
      "Website design with your Odoo",
-     36
+     67
     ]
    ]
   },
   {
    "no": "05",
    "title": "Industries & reference",
-   "page": 37,
+   "page": 69,
    "sections": [
     [
      "Odoo by industry",
-     37
-    ],
-    [
-     "Odoo by industry (continued)",
-     38
+     69
     ],
     [
      "Retail: modules and rollout",
-     39
+     70
     ],
     [
      "Food & beverage: modules and rollout",
-     41
+     74
     ],
     [
      "Manufacturing: modules and rollout",
-     43
+     78
     ],
     [
      "Ecommerce: modules and rollout",
-     45
+     82
     ],
     [
      "Construction: modules and rollout",
-     47
+     86
     ],
     [
      "Clinics & healthcare: modules and rollout",
-     49
+     90
     ],
     [
      "Travel & tours: modules and rollout",
-     51
+     94
     ],
     [
      "Health & wellness: modules and rollout",
-     53
+     98
     ],
     [
      "Localisation: SG, PH, VN",
-     55
+     102
     ],
     [
      "Where we work",
-     56
+     104
     ],
     [
      "How to start",
-     57
+     106
     ]
    ]
   }
